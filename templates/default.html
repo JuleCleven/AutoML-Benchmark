@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<html lang="en">
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+<head>
+  <!--This is where we define the functions to load the tables -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <script>
+  $(function(){
+    $("#characteristics_table").load("static/include/characteristics_table.html");
+  });
+  
+  $(function(){
+    $("#performance_table").load("static/include/performance_table.html");
+  });
+
+  $(function(){
+    $("#integration_table").load("static/include/integration_table.html");
+  });
+  
+  $(function(){
+    $("#requirements_and_boundaries_table").load("static/include/requirements_and_boundaries_table.html");
+  });
+  
+  $(function(){
+    $("#preparation_table").load("static/include/preparation_table.html");
+  });
+  
+  $(function(){
+    $("#modeling_table").load("static/include/modeling_table.html");
+  });
+
+  $(function(){
+    $("#deployment_table").load("static/include/deployment_table.html");
+  });
+
+  $(function(){
+    $("#results_table").load("static/include/results_table.html");
+  });
+
+  $(function(){
+    $("#personas_cards").load("static/include/personas_cards.html");
+  });
+
+  $(function(){
+    $("#form").load("static/include/form.html");
+  });
+  </script>
+
+  <!--This is where we are done loading the tables -->
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="../static/app.css"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/app.css') }}">
+  <link rel="shortcut icon"  href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+ <!-- Here i put up the title of the page (not the heading) -->
+<body>
+  <!-- Sidebar -->
+  <ul class="sidenav">
+    <li class="sidebar"><a href="#introduction" class="sidebar">1. Introduction</a></li>
+    <li class="sidebar"><a href="#methodology" class="sidebar">2. Methodology</a></li>
+    <li class="sidebar"><a href="#automl_systems" class="sidebar">3. AutoML Systems</a></li>
+    <li class="sidebar"><a href="#characteristics_requirements_and_boundaries" class="sidebar">4. Characteristics Requirements and Boundaries</a>
+      <ul class="ml10">
+        <li class="sidebar"><a href="#characteristics" class="sidebar">4.1. Characteristics</a><br></li>
+        <li class="sidebar"><a href="#requirements_and_boundaries" class="sidebar">4.2. Requirements<br> and Boundaries</a></li>
+      </ul>
+    </li>
+    <li class="sidebar"><a href="#performance" class="sidebar">5. Performance</a></li>
+    <li class="sidebar"><a href="#functionalities" class="sidebar">6. Functionalities</a>
+      <ul class="ml10">
+        <li class="sidebar"><a href="#data_integration" class="sidebar">6.1. Data Integration</a><br></li>
+        <li class="sidebar"><a href="#data_preparation" class="sidebar">6.2. Data Preparation</a><br></li>
+        <li class="sidebar"><a href="#modeling" class="sidebar">6.3. Modeling</a><br></li>
+        <li class="sidebar"><a href="#deployment" class="sidebar">6.4. Deployment</a><br></li>
+      </ul>
+    </li>
+    <li class="sidebar"><a href="#results" class="sidebar">7. Results</a></li>
+    <li class="sidebar"><a href="#practical_examples" class="sidebar">8. Practical Examples</a></li>
+    <li class="sidebar"><a href="#form_link" class="sidebar">9. Form</a></li>
+    <li class="sidebar"><a href="#wrap_up" class="sidebar">10. Wrap Up</a></li>
+    <li class="sidebar"><a href="#bibliography" class="sidebar">11. Bibliography</a></li>
+  </ul>
+
+  <div class="main">
+    <section class="jumbotron bg-light text-center">
+      <div class="container">
+          <h1>AutoML Benchmark in Production</h1>
+          <p class="text-muted ph2">
+            Comparison and Analysis of Different AutoML Systems in the Production Domain.<br>
+            AutoML Systems are tools that propose to automate the <b>machine learning (ML) pipeline</b>:
+            integration, preparation, modeling and model deployment.
+
+            Although all AutoML systems aim to facilitate the usage of ML in production,
+            they may differ on how to accomplish this objective, approaching the <b>ML pipeline</b> in different levels.
+
+            The purpose of this benchmark is to, using currently available AutoML systems in the market,
+            evaluate how each system approaches the <b>ML pipeline</b> and help a user to choose which system to pick.
+
+            25 AutoML systems are presented in this benchmark, listed in chapter <a href="#automl_systems">AutoML Systems</a>.
+
+            For a more objective evaluation approach,
+            this research includes evaluations concerning different <b>criteria</b> of each system:
+            <a href="#requirements_and_boundaries">Requirements and Boundaries</a>, <a href="#performance">Performance</a>,
+            <a href="#data_integration">Data Integration</a>, <a href="#data_preparation">Data Preparation</a>,
+            <a href="#modeling">Modeling</a>, <a href="#deployment">Deployment</a> and <a href="#results">Results</a>.<br>
+
+            Ending the benchmark, chapter <a href="#practical_examples">Practical Examples</a> presents what systems are recommended to four exemplified users.
+          </p>
+      </div>
+    </section>
+
+    <!-- Here starts Chapter 1 -->
+    <div class= "center ph4">
+      <h2 id="introduction">1. Introduction to AutoML in Production </h2>
+      <p>
+        &emsp;In the pursuit of leveraging the potential of data,
+        companies usually rely on Machine Learning (ML) technologies.
+
+        Applications of ML range from detecting anomalies in the operation and non-specialized machines
+        designed to learn by themselves, to the optimization of routing and demand forecasting.
+
+        Its most common use cases are for knowledge extraction operations and as the core technology underlying
+        the control of processes and products.
+
+        Projects that rely on the application of ML are usually referred to as ML projects.
+      </p>
+
+      <p>
+        &emsp;However, the development of an ML project is not an automated task -
+        much of it still relies on the expertise of data scientists
+        and knowledge of the manufacturing process. Seeking a solution to this problem,
+        AutoML systems are currently being developed,
+        enabling a wide range of users to benefit from the valuable potential of data and
+        facilitating the use of ML in real-world problems.
+      </p>
+
+      <p>
+        &emsp;In short, AutoML systems propose to automate the <b>ML pipeline</b>.
+
+        Although this naming is useful to get a straightforward view of the main idea,
+        it conceals several tasks, as depicted in <a href="#automl_pipeline">Fig. 1</a>.
+      </p>
+    </div>
+    <figure id="automl_pipeline" class="ph4">
+      <section class="ph5 pv4">
+        <img src="static/images/pipeline.jpg" style="width: 70%;" alt="AutoMLPipeline" title="AutoML pipeline in the context of production">
+        <figcaption class="ts color-grey-700 mv2">
+          Fig. 1. AutoML pipeline in the context of production
+        </figcaption>
+      </section>
+    </figure>
+
+    <!-- Here starts Chapter 2 -->
+    <section class= "ph4">
+      <h2 id="methodology">2. Methodology of the AutoML Benchmark </h2>
+      <p>
+        &emsp;This benchmark is divided into 3 steps: <b>AutoML Systems</b>, <b>Evaluation</b> and <b>Usage</b>.
+      </p>
+
+      <UL>
+        <LI>
+          <h3 id="automl-systems">AutoML Systems</h3>
+          <p>
+            &emsp;This step lists AutoML Systems currently available in the market
+            and specifies how deeply each one of them is evaluated in step <a href="#evaluations">Evaluation</a>.
+          </p>
+        </LI>
+
+        <LI><h3 id="evaluations">Evaluation</h3>
+          <p>
+            &emsp;This step aims to evaluate the models generated
+            by the systems listed in step <a href="#automl_systems">AutoML Systems</a> and compare them.
+
+            Each of the benchmarked systems was analysed in 7 different <b>criteria</b>:
+          </p>
+
+          <UL>
+            <LI><a href="#requirements_and_boundaries">Requirements and Boundaries</a></LI>
+            <LI><a href="#performance">Performance</a></LI>
+            <LI><a href="#data_integration">Data Integration</a></LI>
+            <LI><a href="#data_preparation">Data Preparation</a></LI>
+            <LI><a href="#modeling">Modeling</a></LI>
+            <LI><a href="#deployment">Deployment</a></LI>
+            <LI><a href="#results">Results</a></LI>
+          </UL>
+
+          <p>
+            These <b>criteria</b> are spread out from chapters
+            <a href="#characteristics_requirements_and_boundaries">Characteristics Requirements and Boundaries</a> to
+            <a href="#results">Results</a>.<br>
+          </p>
+        </LI>
+
+        <LI><h3>Usage</h3>
+          <p>
+            &emsp;This step guides the user on how to use the information provided in step
+            <a href="#evaluations">Evaluation</a> to choose systems that fulfill the user's requirements.<br>
+            &emsp;The <b>criteria</b> can be divided into two groups: user-oriented and system-oriented <b>criteria</b>.<br>
+
+            &emsp;To visualize how personal information may affect the choice of system, take a look at
+            <a href="#requirements_and_boundaries">Requirements and Boundaries</a>, the user-oriented <b>criteria</b>.
+            Here, the required user's programming skills, hardware, software, price budget and other metrics are presented.<br>
+
+            &emsp;To compare models, created by the systems, between themselves, the system-oriented <b>criteria</b> can be used.
+            Spread out from chapters
+            <a href="#characteristics_requirements_and_boundaries">Characteristics Requirements and Boundaries</a>
+            to <a href="#results">Results</a>,
+            information ranging from input datatypes to deployment methods is found
+            and can be compared to the use case of interest to find a system that fits the best the user's needs.
+          </p>
+
+          <p>
+            &emsp;To demonstrate how the procedure of choosing a system would occur,
+            four exemplified users are presented in chapter <a href="#practical_examples">Practical Examples</a>,
+            and AutoML systems are recommended for each of them.
+          </p>
+      </UL>
+    </section>
+
+    <!-- Here starts Chapter 3 -->
+    <section class= "ph4">
+      <h2 id="automl_systems">3. AutoML Systems</h2>
+      <p>
+        &emsp;AutoML systems are evaluated based on publicly available data from the production domain.
+        These are the systems included in this benchmark:
+      </p>
+
+      <div id="benchmarked_systems">
+        <UL>
+          <LI>Hyperopt-sklearn<sup id="fnref:Hyperoptsklearn"><a href="#fn:Hyperoptsklearn" class="footnote">1</a></sup></LI>
+          <LI>Auto-sklearn<sup id="fnref:Autosklearn"><a href="#fn:Autosklearn" class="footnote">2</a></sup></LI>
+          <LI>TPOT<sup id="fnref:TPOT"><a href="#fn:TPOT" class="footnote">3</a></sup></LI>
+          <LI>H2O AutoML<sup id="fnref:H2O"><a href="#fn:H2O" class="footnote">4</a></sup></LI>
+          <LI>SAS<sup id="fnref:SAS"><a href="#fn:SAS" class="footnote">5</a></sup></LI>
+          <LI>MLBox<sup id="fnref:MLBox"><a href="#fn:MLBox" class="footnote">6</a></sup></LI>
+          <LI>Google AutoML<sup id="fnref:Google"><a href="#fn:Google" class="footnote">7</a></sup></LI>
+          <LI>Azure Machine Learning<sup id="fnref:Azure"><a href="#fn:Azure" class="footnote">8</a></sup></LI>
+          <LI>MLJar<sup id="fnref:MLJar"><a href="#fn:MLJar" class="footnote">9</a></sup></LI>
+          <LI>ATM<sup id="fnref:ATM"><a href="#fn:ATM" class="footnote">10</a></sup></LI>
+          <LI>Auto_ml<sup id="fnref:Auto_ml"><a href="#fn:Auto_ml" class="footnote">11</a></sup></LI>
+          <LI>Amazon SageMaker<sup id="fnref:Amazon"><a href="#fn:Amazon" class="footnote">12</a></sup></LI>
+          <LI>AutoKeras<sup id="fnref:AutoKeras"><a href="#fn:AutoKeras" class="footnote">13</a></sup></LI>
+          <LI>Feature Tools<sup id="fnref:FeatureTools"><a href="#fn:FeatureTools" class="footnote">14</a></sup></LI>
+          <LI>tsfresh<sup id="fnref:tsfresh"><a href="#fn:tsfresh" class="footnote">15</a></sup></LI>
+        </UL>
+      </div>
+
+      <p>
+        &emsp;Some were included in the analysis, but were not evaluated in every <b>criteria</b>:
+      </p>
+
+      <UL>
+        <LI>Uber Ludwig
+          <sup id="fnref:Ludwig"><a href="#fn:Ludwig" class="footnote">16</a></sup>,
+          not tested regarding its <a href="#performance">Performance</a>.
+        </LI>
+        <LI>TransmogrifAI
+          <sup id="fnref:TransmogrifAI"><a href="#fn:TransmogrifAI" class="footnote">17</a></sup>,
+          systems that require no programming knowledge or Python skills were tested.
+          Since TransmogrifAI requisites expertise in the programming language Scala,
+          its <a href="#performance">Performance</a> was not tested.
+        </LI>
+        <LI>The Automatic Statistician
+          <sup id="fnref:TheAutomaticStatistician"><a href="#fn:TheAutomaticStatistician" class="footnote">18</a></sup>,
+          since no version is available for the public, its <a href="#performance">Performance</a> was not tested.
+        </LI>
+      </UL>
+
+      <p>
+        &emsp;The following ones were not included in the analysis:
+      </p>
+
+      <UL>
+        <LI>Auto-WEKA<sup id="fnref:AutoWEKA"><a href="#fn:AutoWEKA" class="footnote">19</a></sup>, last updated in 2017.</LI>
+        <LI>Darwin<sup id="fnref:Darwin"><a href="#fn:Darwin" class="footnote">20</a></sup>,
+          a demo must be requested for use and the free trial only allows the user to use the dataset provided by the system.
+        </LI>
+        <LI>
+          DataRobot<sup id="fnref:DataRobot"><a href="#fn:DataRobot" class="footnote">21</a></sup>,
+          a demo must be requested for use.</LI>
+        <LI>
+          Devol<sup id="fnref:Devol"><a href="#fn:Devol" class="footnote">22</a></sup>,
+          is not being actively developed,
+          and most information required for this research is not provided by the system.
+        </LI>
+        <LI>
+          ExploreKit<sup id="fnref:ExploreKit"><a href="#fn:ExploreKit" class="footnote">23</a></sup>,
+          most information required for this research is not provided by the system.</LI>
+        <LI>AutoML Zero
+          <sup id="fnref:AutoMLZero"><a href="#fn:AutoMLZero" class="footnote">24</a></sup>,
+          most information required for this research is not provided by the system.
+        </LI>
+        <LI>Auto-PyTorch
+          <sup id="fnref:AutoPyTorch"><a href="#fn:AutoPyTorch" class="footnote">25</a></sup>,
+          it's currently in a very early pre-alpha version and
+          most information required for this research is not provided by the system.
+        </LI>
+      </UL>
+
+        <!-- The main <b>criteria</b> for selecting the most suitable system for a use case from production were:
+        the ease-of-use, both in terms of user experience and knowledge requirements; the coverage of the
+        required tools, e.g., if a tool provides the algorithms that are necessary for a given project;
+        and the inclusion of domain knowledge. -->
+    </section>
+
+    <section class= "ph4">
+      <h2 id="characteristics_requirements_and_boundaries">
+      4. Characteristics, Requirements and Boundaries
+      </h2>
+      <p>
+        &emsp;The chapter <a href="#characteristics">Characteristics</a> presents general information about each system
+        and <a href="#requirements_and_boundaries">Requirements and Boundaries</a>
+        focuses on demonstrating how personal information of the user affects the choice of system.
+      </p>
+      <div class="ph1">
+        <h3 id="characteristics">4.1 Characteristics</h3>
+
+          <p>
+            &emsp;Each <a href="#benchmarked_systems">benchmarked system</a> was tested in a specific version,
+            as can be seen in the "Tested at" column of <a href="#characteristics_table">Table 1</a>.
+          </p>
+          <p>
+            &emsp;Even though this research is focused on AutoML systems, not every evaluated
+            system covers the whole <a href="#automl_pipeline">AutoML Pipeline</a>.
+
+            This distinction is presented in the "AutoML" column of <a href="#characteristics_table">Table 1</a>,
+            where systems marked with a <i>Yes</i> cover a large portion of the Pipeline
+            and the ones which do not are defined in plain text.
+          </p>
+
+        <div id="characteristics_table"></div>
+
+        <p>
+          &emsp;Feature Tools and tsfresh automate only the Data Preparation step of the <a href="#automl_pipeline">AutoML Pipeline</a>.
+          Nevertheless, they were kept in the analysis since they propose to automate the most time-consuming step of it.
+        </p>
+
+        <h3 id="requirements_and_boundaries">4.2 Requirements and Boundaries</h3>
+        <p>
+          &emsp;The systems differ in user knowledge, hardware and software requirements and price,
+          which may imply limitations for different users and use cases.
+          <a href="#requirements_and_boundaries_table">Table 2</a> exhibits these limitations for each system.
+        </p>
+
+        <div id="requirements_and_boundaries_table"></div>
+
+        <p>
+          &emsp;Most of the systems are free to use through a
+          Python-based API and require little knowledge in the programming language.
+          When the user has no experience in programming,
+          cloud-based paid systems should be chosen, since these offer an interface easy to use.<br>
+          A deep knowledge in Data Science is usually not required, but may impact on results depending on the use case.
+        </p>
+      </div>
+    </section>
+
+    <!-- Here starts Chapter 5 -->
+    <section class= "ph4">
+      <h2 id="performance">5. Performance of the AutoML Systems</h2>
+      <p>
+        <p>
+          &emsp;In order to compare performances between models created by the AutoML systems,
+          they were tested on an ML use case from production, where the following data from a CNC mill was used:
+          <a href="https://www.kaggle.com/shasun/tool-wear-detection-in-cnc-mill" target="_blank">
+            CNC Mill Tool Wear data set
+          </a>.
+          This is a classification problem, where the objective here is to predict the success of a test.
+          The dataset was pre-processed before being tested by each system,
+          having in the end 7586 instances and 50 dimensions. The results are presented in <a href="#performance_table">Table 3</a>.
+        </p>
+
+        <p>
+          &emsp;A future version of this benchmark will further include the results generated with the
+          <a href = "https://archive.ics.uci.edu/ml/datasets/SECOM" target="_blank"> SECOM data set</a>.
+        </p>
+
+        <p>
+          &emsp;An overview of other publicly available data sets for production can be found at
+          <a
+            href="https://www.ipt.fraunhofer.de/de/kompetenzen/ProduktionsqualitaetundMesstechnik/Projekte/machine-learning.html"
+            target="_blank"
+          >
+            Fraunhofer IPT Application Fields and Free-Access Data Records
+          </a>.
+        </p>
+
+      <!--Performance Table -->
+      <div class="ph1">
+        <div id="performance_table"></div>
+      </div>
+      <p>
+        &emsp;With state of the art results, high Accuracy, high F1 score and low Loss,
+        all systems presented a more than acceptable model as a solution for this particular problem
+        and a distinction between better and worse system is hard to establish here.<br>
+
+        Performance also depends on the runtime, since running a system for more time can output better results.
+      </p>
+    </section>
+
+    <!-- Here starts Chapter 6 -->
+    <section class= "ph4">
+      <h2 id="functionalities">6. Functionalities of the AutoML systems</h2>
+      <p>
+        &emsp;The systems presented here propose to automate the <a href="#automl_pipeline">AutoML Pipeline</a>,
+        or parts of it. Having that in mind,
+        this chapter of the benchmark will evaluate to which degree every step of the Pipeline is covered by each system.
+      </p>
+
+      <div class="ph1">
+        <h3 id="data_integration">6.1 Data Integration</h3>
+        <p>
+          &emsp;Data Integration aims to integrate data residing in different sources.
+          In <a href="#integration_table">Table 4</a>,
+          data types accepted by each system are displayed, as well as if these automate the data integration process.
+        </p>
+        <div id="integration_table">
+        </div>
+        <p>
+          &emsp;No systems proposes to automate the Data Integration step,
+          since adapting to the vast quantity of different kinds of data sources is not trivial.
+          Regarding the data type, some systems are more limited and others are more inclusive,
+          for example, <i>Auto_ml</i> and <i>Google AutoML</i> respectively.<br>
+
+          Regarding a specific use case, when looking for what system to use,
+          some systems can already be filtered out based on <a href="#integration_table">Table 4</a>.
+          For example, a user facing an audio classification problem and having audio files as input data,
+          can pick <i>Uber Ludwig</i>, but not <i>ATM</i>.
+        </p>
+      </div>
+
+
+      <div class="ph1">
+        <h3 id="data_preparation">6.2 Data Preparation</h3>
+        <p>
+          &emsp;After assembling the dataset in a way it can be utilized by AutoML Systems,
+          it's time to prepare it for the <a href="#modeling">Modeling</a> phase.
+          That means increasing the quality of the data (Data Preprocessing) and
+          restructuring it in order to facilitate the extraction of knowledge by an ML algorithm (Feature Engineering).
+          As can be seen in <a href="#preparation_table">Table 5</a>,
+          each system was evaluated with respect to how deep this preparation step is explored.
+        </p>
+        <div id="preparation_table"></div>
+        <p>
+          &emsp;The exact approach taken for each of these methods is not specified in this benchmark,
+          e.g. System X uses PCA for Data Reduction,
+          therefore a <i>Yes</i> means some approach is used for the method and a <i>No</i> means no approach is taken.
+          Nevertheless, the concept might be helpful when deciding which system to use for a certain use case.
+          H2O AutoML might grant better results when dealing with unbalanced data sets, whereas
+          other systems may be more effective for data sets with many dimensions, for example.
+        </p>
+      </div>
+
+      <div class="ph1">
+        <h3 id="modeling">6.3 Modeling</h3>
+        <p>
+          &emsp;The Modeling phase requires a prepared dataset to output effective results. To that end, the systems might
+          iterate through <a href="#data_preparation">Data Preparation</a> and <a href="#modeling">Modeling</a>
+          multiple times before reaching the final result.<br>
+          Some of the algorithms used for each system, as well as how they are selected,
+          are shown in <a href="#modeling_table">Table 6</a>.
+        </p>
+        <div id="modeling_table"></div>
+        <p>
+          &emsp;Have in mind that some systems allow exporting specific algorithms,
+          others just output the best model and the results. See <a href="#results_table">Table 8</a> for more information.
+          More visual results can be obtained by a system which provides graphs and other metrics.
+          See column Diagnosis of table <a href="#modeling_table">Table 6</a>.
+        </p>
+      </div>
+
+      <div class="ph1">
+        <h3 id="deployment">6.4 Deployment</h3>
+        <p>
+          &emsp;Ending the <a href="#automl_pipeline">AutoML Pipeline</a>, deployment aims to make the model available to users.
+
+          For that, <a href="#deployment_table">Table 7</a> answers the following questions:
+          <OL>
+            <LI>How can the model be deployed?</LI>
+            <LI>How can the model be accessed by the user?</LI>
+            <LI>Is training during production possible?</LI>
+          </OL>
+        <div id="deployment_table"></div>
+        <p>
+          &emsp;There is not a standard way of exporting the generated model,
+          as can be seen in the <i>Productionize Model</i> column of <a href="#deployment_table">Table 7</a>.<br>
+          Regarding the Web Service, usually a REST API is provided,
+          where the model can be accessed through an endpoint.
+        </p>
+      </div>
+    </section>
+
+    <!-- Here starts Chapter 7 -->
+    <section class= "ph4">
+      <h2 id="results">7: Results</h2>
+      <p>
+        &emsp;<a href="#results_table">Table 8</a>
+        aims to show how the trained models results of each system are presented to the user.<br>
+        Some systems also provide intermediary results - in case <a href="#modeling">Modeling</a> takes a long time,
+        it can be interesting to have access to a model that has already fully trained, even if that is not the best one.
+    </p>
+      <div class="ph1">
+        <div id="results_table"></div>
+      </div>
+      <p>
+        &emsp;As can be seen in the table, the results vary from outputting sometimes a list of models and their characteristics,
+        and sometimes just the best model and evaluations.
+        Consequently, the user is not always allowed to decide which model can be exported, and therefore run in production.<br>
+
+        &emsp;Looking at the non-AutoML System, since Feature Tools and tsfresh propose to automate only the
+        <a href="#data_preparation">Data Preparation</a> phase,
+        their outputs are structured as a new dataset, containing new features and transformed old ones.
+      </p>
+    </section>
+
+    <!-- Here starts Chapter 8 -->
+    <section class= "ph4">
+      <h2 id="practical_examples">8: Practical Examples</h2>
+        <p>
+          &emsp;In order to simulate how the process of finding systems
+          that fulfill a person's restrictions and requirements occurs,
+          the <a href="#personas_cards">Personas Cards</a> were created. <br>
+
+          &emsp;Each card represents a <i>persona</i> - an exemplified user.
+          At the end of each card, the chosen systems are displayed,
+          followed by the reasons they were designated for the specific persona and use case.
+        </p>
+        <div id="personas_cards"></div>
+        <p class="ts color-grey-700 mv2" style="text-align: center">
+          Paid systems, such as Google AutoML and Azure,
+          can be used by the personas with no budget since these systems provide free trials,
+          but it would not be a long term solution.<br>
+          Recommended systems are not ordered from most recommended to less recommended.
+        </p>
+        <p>
+          &emsp;To test the systems,
+          in case of security issues or non-availability of data,
+          it is possible to use publicly available data sets from production. See
+          <a
+            href="https://www.ipt.fraunhofer.de/de/kompetenzen/ProduktionsqualitaetundMesstechnik/Projekte/machine-learning.html"
+            target="_blank"
+          >
+            Fraunhofer IPT Application Fields and Free-Access Data Records
+          </a>.
+        </p>
+    </section>
+    <!-- Here is the form -->
+    <section class= "ph4">
+      <h2 id="form_link">9: Form</h2>
+    <form id="regForm" action="/process" method="POST">
+        <h1 style="text-align:center;">AutoML System Filter</h1>
+        <div class="tab">
+                <h2>Requirements and Boundaries of the AutoML Systems:</h2>
+                <p class="left">Budget: </p>
+                <div class="container_right">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" id="crit_payment" name="crit_payment" value="True"><label for="crit_payment">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
+                <div class="wrapper">
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="payment-y" name="payment" value="True">
+                        <input type="radio" checked class="toggle_option" id="payment-na" name="payment" value="N/A">
+                        <input type="radio" class="toggle_option" id="payment-n" name="payment" value="False">
+                        <label for="payment-y">Yes</label>
+                        <label for="payment-na">N/A</label>
+                        <label for="payment-n">No</label>
+                        <div class="toggle_option_slider">
+                        </div>
+                    </div>
+                </div>
+                <h3>Programming Experience:</h3>
+                    <p class="alignleft">Programming Skills: </p>
+                        <div class="container_right">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" class="alignright"  id="crit_programming_skills" name="crit_programming_skills" value="True"><label for="crit_programming_skills">Highly Relevant ?</label></li>
+                            </ul>
+                        </div>
+                    <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="programming_skills-y" name="programming_skills" value="True">
+                            <input type="radio" checked class="toggle_option" id="programming_skills-na" name="programming_skills" value="N/A">
+                            <input type="radio" class="toggle_option" id="programming_skills-n" name="programming_skills" value="False">
+                            <label for="programming_skills-y">Yes</label>
+                            <label for="programming_skills-na">N/A</label>
+                            <label for="programming_skills-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="alignleft">Data Science Skills: </p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_datascience_skills" name="crit_datascience_skills" value="True"><label for="crit_datascience_skills">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                    <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="datascience_skills-y" name="datascience_skills" value="True">
+                            <input type="radio" checked class="toggle_option" id="datascience_skills-na" name="datascience_skills" value="N/A">
+                            <input type="radio" class="toggle_option" id="datascience_skills-n" name="datascience_skills" value="False">
+                            <label for="datascience_skills-y">Yes</label>
+                            <label for="datascience_skills-na">N/A</label>
+                            <label for="datascience_skills-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="alignleft">Programming Languages:</p>
+                        <div class="container_right">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="crit_prog_lang" name="crit_prog_lang" value="True"><label for="crit_prog_lang">Highly Relevant ?</label></li>
+                            </ul>
+                        </div>
+                    <div class="container">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" id="python" name="python" value="True"><label for="python">Python</label></li>
+                            <li><input type="checkbox" id="r" name="r" value="True"><label for="r">R</label></li>
+                            <li><input type="checkbox" id="java" name="java" value="True"><label for="java">Java</label></li>
+                            <li><input type="checkbox" id="scala" name="scala" value="True"><label for="scala">Scala</label></li>
+                        </ul>
+                    </div>
+                <p class="alignleft">Cloud Computing:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_cloud_computing" name="crit_cloud_computing" value="True"><label for="crit_cloud_computing">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="wrapper">
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="cloud_computing-y" name="cloud_computing" value="True">
+                        <input type="radio" checked class="toggle_option" id="cloud_computing-na" name="cloud_computing" value="N/A">
+                        <input type="radio" class="toggle_option" id="cloud_computing-n" name="cloud_computing" value="False">
+                        <label for="cloud_computing-y">Yes</label>
+                        <label for="cloud_computing-na">N/A</label>
+                        <label for="cloud_computing-n">No</label>
+                        <div class="toggle_option_slider">
+                        </div>
+                    </div>
+                </div>
+                <p class="alignleft">Operating System:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_os" name="crit_os" value="True"><label for="crit_os">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="container">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" id="linux" name="linux" value="True"><label for="linux">Linux</label></li>
+                        <li><input type="checkbox" id="mac_os" name="mac_os" value="True"><label for="mac_os">Mac OS</label></li>
+                        <li><input type="checkbox" id="windows" name="windows" value="True"><label for="windows">Windows</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab">
+                    <h2>Data Types Accepted by each AutoML System:</h2>
+                    <p class="alignleft">Automatic: </p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_automatic" name="crit_cloud_computing" value="True"><label for="crit_automatic">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="wrapper">
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="automatic-y" name="automatic" value="True">
+                        <input type="radio" checked class="toggle_option" id="automatic-na" name="automatic" value="N/A">
+                        <input type="radio" class="toggle_option" id="automatic-n" name="automatic" value="False">
+                        <label for="automatic-y">Yes</label>
+                        <label for="automatic-na">N/A</label>
+                        <label for="automatic-n">No</label>
+                        <div class="toggle_option_slider">
+                        </div>
+                    </div>
+                </div>
+
+                  <p class="alignleft">Accepted Input Datatypes:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_data_types" name="crit_data_types" value="True"><label for="crit_data_types">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="container">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" id="numerical" name="numerical" value="True"><label for="numerical">Numerical</label></li>
+                        <li><input type="checkbox" id="time_series" name="time_series" value="True"><label for="time_series">Time Series</label></li>
+                        <li><input type="checkbox" id="images" name="images" value="True"><label for="images">Images</label></li>
+                        <li><input type="checkbox" id="videos" name="videos" value="True"><label for="videos">Videos</label></li>
+                        <li><input type="checkbox" id="audios" name="audios" value="True"><label for="audios">Audios</label></li>
+                        <li><input type="checkbox" id="text" name="text" value="True"><label for="text">Text</label></li>
+                    </ul>
+                </div>
+                    <h3>Preparation of the Integrated Data for Modeling</h3>
+                    <p class="alignleft">Input Required:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_input" name="crit_input" value="True"><label for="crit_input">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="container">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" id="train+test" name="input_required" value="train+test"><label for="train+test">Train and test datasets</label></li>
+                        <li><input type="checkbox" id="whole_dataset" name="input_required" value="whole_dataset"><label for="whole_dataset">Whole dataset</label></li>
+                        <li><input type="checkbox" id="no_target" name="input_required" value="no_target"><label for="no_target">Train and test datasets, Testset must not contain a target</label></li>
+                        <li><input type="checkbox" id="set+relation" name="input_required" value="set+relation"><label for="set+relation">Datasets and relations between them</label></li>
+                        <li><input type="checkbox" id="time+target" name="input_required" value="time+target"><label for="time+target">Time series dataset and target dataset</label></li>
+                    </ul>
+                </div>
+                        <p class="alignleft">Data Preprocessing: </p>
+                        <div class="container_right">
+                          <ul class="ks-cboxtags">
+                              <li><input type="checkbox" class="alignright" id="crit_processing" name="crit_processing" value="True"><label for="crit_processing">Highly Relevant ?</label></li>
+                          </ul>
+                        </div>
+                        <div class="container">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="handling_missing_values" name="handling_missing_values" value="True"><label for="handling_missing_values">Handling Missing Values</label></li>
+                                <li><input type="checkbox" id="outliers_detection_deletion" name="outliers_detection_deletion" value="True"><label for="outliers_detection_deletion">Outliers Detection and Deletion</label></li>
+                                <li><input type="checkbox" id="data_standardization" name="data_standardization" value="True"><label for="data_standardization">Data Standardization</label></li>
+                                <li><input type="checkbox" id="data_encoding" name="data_encoding" value="True"><label for="data_encoding">Data Encoding</label></li>
+                                <li><input type="checkbox" id="feature_scaling" name="feature_scaling" value="True"><label for="feature_scaling">Feature Scaling</label></li>
+                                <li><input type="checkbox" id="data_reduction" name="data_reduction" value="True"><label for="data_reduction">Data Reduction</label></li>
+                                <li><input type="checkbox" id="data_balancing" name="data_balancing" value="True"><label for="data_balancing">Data Balancing</label></li>
+                                <li><input type="checkbox" id="data_augmentation" name="data_augmentation" value="True"><label for="data_augmentation">Data Augmentation</label></li>
+                            </ul>
+                        </div>
+                        <p class="alignleft">Feature Engineering: </p>
+                        <div class="container_right">
+                          <ul class="ks-cboxtags">
+                              <li><input type="checkbox" class="alignright" id="crit_feature_engineering" name="crit_processing" value="True"><label for="crit_feature_engineering">Highly Relevant ?</label></li>
+                          </ul>
+                        </div>
+                        <div class="container">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="feature_generation" name="feature_generation" value="True"><label for="feature_generation">Feature Generation</label></li>
+                                <li><input type="checkbox" id="integrated_modeling" name="integrated_modeling" value="True"><label for="integrated_modeling">Integrated with Modeling</label></li>
+                            </ul>
+                        </div>
+                </div>
+            <div class="tab">
+                <h2>Modeling Approach and Diagnosis:</h2>
+                <p class="alignleft">Training:</p>
+                <div class="container_right">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" class="alignright" id="crit_training" name="crit_training" value="True"><label for="crit_training">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
+                <div class="wrapper">
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="training-y" name="training" value="True">
+                        <input type="radio" checked class="toggle_option" id="training-na" name="training" value="N/A">
+                        <input type="radio" class="toggle_option" id="training-n" name="training" value="False">
+                        <label for="training-y">Yes</label>
+                        <label for="training-na">N/A</label>
+                        <label for="training-n">No</label>
+                        <div class="toggle_option_slider">
+                        </div>
+                    </div>
+                </div>
+                    <p class="alignleft">ML Algorithms:</p>
+                        <div class="container_right">
+                          <ul class="ks-cboxtags">
+                              <li><input type="checkbox" class="alignright" id="crit_ml_algorithms" name="crit_ml_algorithms" value="True"><label for="crit_ml_algorithms">Highly Relevant ?</label></li>
+                          </ul>
+                        </div>
+                        <div class="container">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="decision_tree" name="decision_tree" value="True"><label for="decision_tree">Decision Tree</label></li>
+                                <li><input type="checkbox" id="gaussian_processes" name="gaussian_processes" value="True"><label for="gaussian_processes">Gaussian Processes</label></li>
+                                <li><input type="checkbox" id="annealing" name="annealing" value="True"><label for="annealing">Annealing</label></li>
+                                <li><input type="checkbox" id="tree_of_parzen_estimators" name="tree_of_parzen_estimators" value="True"><label for="tree_of_parzen_estimators">Tree of Parzen Estimators</label></li>
+                                <li><input type="checkbox" id="light_gbm" name="light_gbm" value="True"><label for="light_gbm">Light GBM</label></li>
+                                <li><input type="checkbox" id="random_search" name="random_search" value="True"><label for="random_search">Random Search</label></li>
+                                <li><input type="checkbox" id="adaboost" name="adaboost" value="True"><label for="adaboost">Adaboost</label></li>
+                                <li><input type="checkbox" id="gradient_boosting" name="gradient_boosting" value="True"><label for="gradient_boosting">Gradient Boosting</label></li>
+                                <li><input type="checkbox" id="knn" name="knn" value="True"><label for="knn">K-NN</label></li>
+                                <li><input type="checkbox" id="random_forest" name="random_forest" value="True"><label for="random_forest">Random Forest</label></li>
+                                <li><input type="checkbox" id="svm" name="svm" value="svm"><label for="data_standardization">SVM</label></li>
+                                <li><input type="checkbox" id="xgboost" name="xgboost" value="True"><label for="xgboost">XGBoost</label></li>
+                                <li><input type="checkbox" id="neural_network" name="neural_network" value="True"><label for="neural_network">Neural Network</label></li>
+                                <li><input type="checkbox" id="regression" name="regression" value="True"><label for="regression">Regression</label></li>
+                                <li><input type="checkbox" id="xgboost_gb" name="xgboost_gb" value="True"><label for="xgboost_gb">XGBoost (GB)</label></li>
+                                <li><input type="checkbox" id="regularized_greedy_forest" name="regularized_greedy_forest" value="True"><label for="regularized_greedy_forest">Regularized Greedy Forest</label></li>
+                                <li><input type="checkbox" id="k_nearest_neighbors" name="k_nearest_neighbors" value="True"><label for="k_nearest_neighbors">K-nearest Neighbors</label></li>
+                                <li><input type="checkbox" id="extra_trees" name="extra_trees" value="True"><label for="extra_trees">Exrta Trees</label></li>
+                                <li><input type="checkbox" id="deep_neural_network" name="deep_neural_network" value="True"><label for="deep_neural_network">Deep Neural Network</label></li>
+                                <li><input type="checkbox" id="ml_algorithms_included" name="ml_algorithms_included" value="False"><label for="ml_algorithms_included">No ML Algorithms</label></li>
+                            </ul>
+                        </div>
+                <p class="alignleft">Anti-overfitting approach:</p>
+                <div class="container_right">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" class="alignright" id="crit_anti_overfitting_approach" name="crit_anti_overfitting_approach" value="True"><label for="crit_anti_overfitting_approach">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
+                <div class="wrapper">
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="anti-overfitting-y" name="anti-overfitting" value="True">
+                        <input type="radio" checked class="toggle_option" id="anti-overfitting-na" name="anti-overfitting" value="N/A">
+                        <input type="radio" class="toggle_option" id="anti-overfitting-n" name="anti-overfitting" value="False">
+                        <label for="anti-overfitting-y">Cross-validation</label>
+                        <label for="anti-overfitting-na">N/A</label>
+                        <label for="anti-overfitting-n">None</label>
+                        <div class="toggle_option_slider">
+                        </div>
+                    </div>
+                </div>
+                    <h3>Algorithm Selection:</h3>
+                    <p class="alignleft">Evaluation Approach:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_evaluation_approach" name="crit_evaluation_approach" value="True"><label for="crit_evaluation_approach">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                    <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="evaluation-y" name="evaluation" value="True">
+                            <input type="radio" checked class="toggle_option" id="evaluation-na" name="evaluation" value="N/A">
+                            <input type="radio" class="toggle_option" id="evaluation-n" name="evaluation" value="False">
+                            <label for="evaluation-y">Yes</label>
+                            <label for="evaluation-na">N/A</label>
+                            <label for="evaluation-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="alignleft">Search:</p>
+                    <div class="container_right">
+                          <ul class="ks-cboxtags">
+                              <li><input type="checkbox" class="alignright" id="crit_search" name="crit_search" value="True"><label for="crit_search">Highly Relevant ?</label></li>
+                          </ul>
+                        </div>
+                        <div class="container">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="model" name="search" value="Model"><label for="model">Model</label></li>
+                                <li><input type="checkbox" id="population" name="search" value="Population"><label for="population">Population</label></li>
+                                <li><input type="checkbox" id="randomSearch" name="search" value="Random search"><label for="randomSearch">Random search</label></li>
+                                <li><input type="checkbox" id="no_search" name="search" value="None"><label for="no_search">None</label></li>
+                            </ul>
+                        </div>
+                    <p class="alignleft">GUI:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_gui" name="crit_gui" value="True"><label for="crit_gui">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                    <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="gui-y" name="gui" value="True">
+                            <input type="radio" checked class="toggle_option" id="gui-na" name="gui" value="N/A">
+                            <input type="radio" class="toggle_option" id="gui-n" name="gui" value="False">
+                            <label for="gui-y">Yes</label>
+                            <label for="gui-na">N/A</label>
+                            <label for="gui-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                <p class="alignleft">Hyperparameter Selection:</p>
+                <div class="container_right">
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" class="alignright" id="crit_hyper_selection" name="crit_hyper_selection" value="True"><label for="crit_hyper_selection">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
+                <div class="wrapper">
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="hyperparameter_selection-y" name="hyperparameter_selection" value="True">
+                        <input type="radio" checked class="toggle_option" id="hyperparameter_selection-na" name="hyperparameter_selection" value="N/A">
+                        <input type="radio" class="toggle_option" id="hyperparameter_selection-n" name="hyperparameter_selection" value="False">
+                        <label for="hyperparameter_selection-y">Yes</label>
+                        <label for="hyperparameter_selection-na">N/A</label>
+                        <label for="hyperparameter_selection-n">No</label>
+                        <div class="toggle_option_slider">
+                        </div>
+                    </div>
+                </div>
+                    <h3>Diagnosis:</h3>
+                    <p class="alignleft">Metrics:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_metrics" name="crit_metrics" value="True"><label for="crit_metrics">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                    <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="metrics-y" name="metrics" value="True">
+                            <input type="radio" checked class="toggle_option" id="metrics-na" name="metrics" value="N/A">
+                            <input type="radio" class="toggle_option" id="metrics-n" name="metrics" value="False">
+                            <label for="metrics-y">Yes</label>
+                            <label for="metrics-na">N/A</label>
+                            <label for="metrics-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="alignleft">Charts:</p>
+                    <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_charts" name="crit_charts" value="True"><label for="crit_charts">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                    <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="charts-y" name="charts" value="True">
+                            <input type="radio" checked class="toggle_option" id="charts-na" name="charts" value="N/A">
+                            <input type="radio" class="toggle_option" id="charts-n" name="charts" value="False">
+                            <label for="charts-y">Yes</label>
+                            <label for="charts-na">N/A</label>
+                            <label for="charts-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="tab">
+                <h2>Deployment for Production:</h2>
+                <p class="alignleft">Web Service:</p>
+                <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_web_service" name="crit_web_service" value="True"><label for="crit_web_service">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="web_service-y" name="web_service" value="True">
+                            <input type="radio" checked class="toggle_option" id="web_service-na" name="web_service" value="N/A">
+                            <input type="radio" class="toggle_option" id="web_service-n" name="web_service" value="False">
+                            <label for="web_service-y">Yes</label>
+                            <label for="web_service-na">N/A</label>
+                            <label for="web_service-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                <p class="alignleft">Online Model Training:</p>
+                <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_online_model_training" name="crit_online_model_training" value="True"><label for="crit_online_model_training">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="online_model_training-y" name="online_model_training" value="True">
+                            <input type="radio" checked class="toggle_option" id="online_model_training-na" name="online_model_training" value="N/A">
+                            <input type="radio" class="toggle_option" id="online_model_training-n" name="online_model_training" value="False">
+                            <label for="online_model_training-y">Yes</label>
+                            <label for="online_model_training-na">N/A</label>
+                            <label for="online_model_training-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                <h2>Results Available for the User:</h2>
+                <p class="alignleft">Preliminary Results:</p>
+                <div class="container_right">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" class="alignright" id="crit_pre-results" name="crit_pre-results" value="True">
+                                <label for="crit_pre-results">Highly Relevant ?</label></li>
+                        </ul>
+                    </div>
+                <div class="wrapper">
+                        <div class="toggle_radio">
+                            <input type="radio" class="toggle_option" id="pre-results-y" name="pre-results" value="True">
+                            <input type="radio" checked class="toggle_option" id="pre-results-na" name="pre-results" value="N/A">
+                            <input type="radio" class="toggle_option" id="pre-results-n" name="pre-results" value="False">
+                            <label for="pre-results-y">Yes</label>
+                            <label for="pre-results-na">N/A</label>
+                            <label for="pre-results-n">No</label>
+                            <div class="toggle_option_slider">
+                            </div>
+                        </div>
+                    </div>
+                <p class="alignleft">Final Results:</p>
+                <div class="container_right">
+                          <ul class="ks-cboxtags">
+                              <li><input type="checkbox" class="alignright" id="crit_results" name="crit_results" value="True"><label for="crit_results">Highly Relevant ?</label></li>
+                          </ul>
+                        </div>
+                <div class="container">
+                            <ul class="ks-cboxtags">
+                                <li><input type="checkbox" id="best_model" name="best_model" value="True"><label for="best_model">Best Model</label></li><li><input type="checkbox" id="evaluation" name="evaluation" value="True"><label for="evaluation">Evaluation</label></li>
+                                <li><input type="checkbox" id="ensamble_models" name="ensamble_models" value="True search"><label for="ensamble_models">Ensamble</label></li>
+                                <li><input type="checkbox" id="model_characteristics" name="model_characteristics" value="True"><label for="model_characteristics">Model Characteristics</label></li>
+                                <li><input type="checkbox" id="leaderboard" name="leaderboard" value="True"><label for="leaderboard">Leaderboard of algorithms tested</label></li>
+                                <li><input type="checkbox" id="written_reports" name="written_reports" value="True search"><label for="written_reports">Reports written in natural language</label></li>
+                                <li><input type="checkbox" id="feature_matrix" name="feature_matrix" value="True"><label for="feature_matrix">Feature Matrix</label></li>
+                            </ul>
+                        </div>
+            </div>
+
+            <div class="tab">
+                <div>
+                    <table id="result" style="width:100%">
+                        <tr>
+                            <th>System</th>
+                            <th>Number Score</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    <!--Make these buttons submit buttons ?-->
+                </div>
+            </div>
+
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step"></span>
+                <span class="step" style="display:none;"></span>
+            </div>
+    </form>
+    </section>
+  <div id=""></div>
+
+    <!-- Here starts Chapter 9 -->
+    <section class= "ph4">
+      <h2 id="wrap_up">10. Wrap Up </h2>
+      <p>
+        &emsp;The past developments in the area of AutoML indicate that progress towards improved automation
+        of specific steps within the <a href="#automl_pipeline">AutoML Pipeline</a> can be expected.
+
+        Overall, a full automation of the whole <a href="#automl_pipeline">AutoML Pipeline</a> from Data Integration to
+        Deployment is a concept that requires more research.
+
+        In the near future, it can be expected that tasks such as Modeling will be automated enough so that ML models will be created
+        with little to no ML knowledge. Semi-AutoML systems that support data scientists in other activities can be expected in
+        the future as well.
+      </p>
+    </section>
+
+    <!-- Here starts Chapter 10 -->
+    <section class= "ph4">
+      <h2 id="bibliography">11. Bibliography </h2>
+    </section>
+
+    <div class="center ph4 pt2 footnotes">
+      <ol>
+
+        <li id="fn:Hyperoptsklearn">
+          <p>Komer B, Bergstra J, Eliasmith C (2019) Hyperopt-Sklearn. in Hutter F, Kotthoff L, Vanschoren J, (Eds.).
+            Automated Machine Learning. Springer International Publishing. Cham, pp. 97–111.&nbsp;<a
+              href="#fnref:Hyperoptsklearn" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:Autosklearn">
+          <p>Feurer M, Klein A, Eggensperger K, Springenberg JT, Blum M, Hutter F (2019) Auto-sklearn: Efficient and
+            Robust Automated Machine Learning. in Hutter F, Kotthoff L, Vanschoren J, (Eds.). Automated Machine Learning.
+            Springer International Publishing. Cham, pp. 113–134.&nbsp;<a href="#fnref:Autosklearn"
+              class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:TPOT">
+          <p>Olson RS, Moore JH (2019) TPOT: A Tree-Based Pipeline Optimization Tool for Automating Machine Learning. in
+            Hutter F, Kotthoff L, Vanschoren J, (Eds.). Automated Machine Learning. Springer International Publishing.
+            Cham, pp. 151–160.&nbsp;<a href="#fnref:TPOT" class="reversefootnote">↩</a></p>
+        </li>
+
+          <!-- <li id="fn:CategoricalEncoding">
+          <p>XXXXXXXXXXXXXXXXXXXXXXXXX Text Missing XXXXXXXXXXXXXXXXXXXXXXXXXX.&nbsp;<a href="#fnref:CategoricalEncoding" class="reversefootnote">↩</a></p>
+        </li> -->
+        <!-- <li id="fn:FeatureHub">
+          <p>Smith MJ, Wedge R, Veeramachaneni K (2017) FeatureHub: Towards collaborative data science. 2017 IEEE
+            International Conference on Data Science and Advanced Analytics (DSAA), pp. 590–600.&nbsp;<a
+              href="#fnref:FeatureHub" class="reversefootnote">↩</a></p>
+        </li> -->
+
+
+        <li id="fn:H2O">
+          <p>H2O.ai. AutoML: Automatic Machine Learning — H2O 3.26.0.10 documentation.
+            http://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html. Accessed on 20.11.2019.&nbsp;<a href="#fnref:H2O"
+              class="reversefootnote">↩</a></p>
+
+        <li id="fn:SAS">
+          <p>SAS Institute Inc. SAS Visual Data Mining and Machine Learning.
+            https://www.sas.com/en_us/software/visual-data-mining-machine-learning.html. Accessed on 26.01.2020.&nbsp;<a
+              href="#fnref:SAS" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:MLBox">
+          <p>ARONIO DE ROMBLAY A. MLBox Documentation. https://mlbox.readthedocs.io/en/latest/index.html. Accessed on
+            20.11.2019.&nbsp;<a href="#fnref:MLBox" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:Google">
+          <p>Google Cloud. Best practices for creating training data | AutoML Tables Documentation | Google Cloud.
+            https://cloud.google.com/automl-tables/docs/data-best-practices#tables-does. Accessed on 20.11.2019.&nbsp;<a
+              href="#fnref:Google" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:Azure">
+          <p>Microsoft Azure. Azure Machine Learning documentation.
+            https://docs.microsoft.com/en-us/azure/machine-learning/. Accessed on 20.11.2019.&nbsp;<a href="#fnref:Azure"
+              class="reversefootnote">↩</a>
+          </p>
+        </li>
+        <li id="fn:MLJar">
+          <p>MLJAR. mljar-docs. https://docs.mljar.com/. Accessed on 06.02.2020.&nbsp;<a href="#fnref:MLJar"
+              class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:ATM">
+          <p>Swearingen T, Drevo W, Cyphers B, Cuesta-Infante A, Ross A, Veeramachaneni K (2017 - 2017) ATM: A
+            distributed, collaborative, scalable system for automated machine learning. 2017 IEEE International Conference
+            on Big Data (Big Data). IEEE, pp. 151–162.&nbsp;<a href="#fnref:ATM" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:Auto_ml">
+          <p>Parry P. auto_ml 0.1.0 documentation. https://auto-ml.readthedocs.io/en/latest/index.html. Accessed on
+            20.11.2019.&nbsp;<a href="#fnref:Auto_ml" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:Amazon">
+          <p>AWS. Amazon SageMaker - Developer Guide. https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-dg.pdf
+           . Accessed on 20.11.2019.&nbsp;<a href="#fnref:Amazon" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:AutoKeras">
+          <p>Feurer M, Klein A, Eggensperger K, Springenberg JT, Blum M, Hutter F (2019) Auto-sklearn: Efficient and
+            Robust Automated Machine Learning. in Hutter F, Kotthoff L, Vanschoren J, (Eds.). Automated Machine Learning.
+            Springer International Publishing. Cham, pp. 113–134.&nbsp;<a href="#fnref:AutoKeras"
+              class="reversefootnote">↩</a>
+          </p>
+        </li>
+
+        <li id="fn:FeatureTools">
+          <p>Feature Labs. Featuretools 0.12.0 documentation. https://docs.featuretools.com/en/stable/index.html. Accessed
+            on 20.11.2019.&nbsp;<a href="#fnref:FeatureTools" class="reversefootnote">↩</a></p>
+        </li>
+        <li id="fn:tsfresh">
+          <p>Christ M, Braun N, Neuffer J. tsfresh — tsfresh 0.12.0 documentation.
+            https://tsfresh.readthedocs.io/en/latest/index.html. Accessed on 06.02.2020.&nbsp;<a href="#fnref:tsfresh"
+              class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:Ludwig">
+          <p>Uber Ludwig documentation. https://uber.github.io/ludwig/. Accessed on 27.05.2020.
+            <a href="#fnref:Ludwig" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:TransmogrifAI">
+          <p>Salesforce.com, Inc. AutoML library for building modular, reusable, strongly typed machine learning workflows
+            on Spark from Salesforce Engineering. https://transmogrif.ai/. Accessed on 26.01.2020.&nbsp;<a
+              href="#fnref:TransmogrifAI" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:TheAutomaticStatistician">
+          <p>The Automatic Statistician. https://link.springer.com/chapter/10.1007/978-3-030-05318-5_9. Accessed on 20.05.2020.
+            <a href="#fnref:TheAutomaticStatistician" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:AutoWEKA">
+          <p>Kotthoff L, Thornton C, Hoos HH, Hutter F, Leyton-Brown K (2019) Auto-WEKA: Automatic Model Selection and
+            Hyperparameter Optimization in WEKA. in Hutter F, Kotthoff L, Vanschoren J, (Eds.). Automated Machine
+            Learning. Springer International Publishing. Cham, pp. 81–95.&nbsp;
+            <a href="#fnref:AutoWEKA" class="reversefootnote">↩</a>
+          </p>
+        </li>
+
+        <li id="fn:Darwin">
+          <p>SparkCognition (2019) From Data to Application: DARWINS UNIQUE APPROACH TO AUTOML.&nbsp;<a
+              href="#fnref:Darwin" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:DataRobot">
+          <p>DataRobot. https://www.datarobot.com/. Accessed on 12.05.2020.
+            <a href="#fnref:DataRobot" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:Devol">
+          <p>Devol. https://github.com/joeddav/devol. Accessed on 20.05.2020.
+            <a href="#fnref:Devol" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:ExploreKit">
+          <p>ExploreKit. http://people.eecs.berkeley.edu/~dawnsong/papers/icdm-2016.pdf. Accessed on 20.05.2020.
+            <a href="#fnref:ExploreKit" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:AutoMLZero">
+          <p>AutoML Zero. https://arxiv.org/pdf/2003.03384.pdf. Accessed on 12.05.2020.<a href="#fnref:AutoMLZero" class="reversefootnote">↩</a></p>
+        </li>
+
+        <li id="fn:AutoPyTorch">
+          <p>Hector Mendoza, Aaron Klein, Matthias Feurer, Jost Tobias Springenberg, Matthias Urban, Michael Burkart, Max
+            Dippel, Marius Lindauer, Frank Hutter (2018) Towards Automatically-Tuned Deep Neural Networks: 7. in Hutter F,
+            Kotthoff L, Vanschoren J, (Eds.). AutoML: Methods, Sytems, Challenges. Springer, pp. 141–156.&nbsp;
+            <a href="#fnref:AutoPyTorch" class="reversefootnote">↩</a>
+          </p>
+        </li>
+      </ol>
+    </div>
+    <script>
+      var moreLink = document.querySelector('.js-more')
+      if (moreLink) {
+        document.querySelector('.js-more').addEventListener('click', function (e) {
+          e.preventDefault()
+          e.target.classList.add('dn')
+          e.target.classList.remove('dib')
+          document.querySelectorAll('.js-hidden').forEach(function (elt) {
+            elt.classList.remove('dn')
+          })
+        })
+      }
+    </script>
+    <script>window.twttr = (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function (f) {
+          t._e.push(f);
+        };
+        return t;
+      }(document, "script", "twitter-wjs"));</script>
+  </div>
+  <script>
+ var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "grid";  //... and fix the Previous/Next buttons:
+  if (n == 0 ) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length-2)) {
+        document.getElementById("nextBtn").style.display = "inline";
+        document.getElementById("nextBtn").innerHTML = "Submit";
+  } else if(n >= x.length-1){
+    document.getElementById("nextBtn").style.display = "none";
+  } else {
+        document.getElementById("nextBtn").style.display = "inline";
+        document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+
+  var x = document.getElementsByClassName("tab");
+
+  if (n == 1 && !validateForm()) return false;
+
+  x[currentTab].style.display = "none";
+
+  currentTab = currentTab + n;
+
+  if (currentTab == x.length-1) {
+
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = alertContents;
+        httpRequest.open(document.getElementById("regForm").getAttribute("method"), document.getElementById("regForm").getAttribute("action"));
+        let formData = new FormData(regForm);
+        httpRequest.send(formData);
+        function alertContents()
+        {
+            if (httpRequest.readyState === XMLHttpRequest.DONE)
+            {
+                if (httpRequest.status === 200)
+                {
+                   var table = document.getElementsById('result')
+                    var cells = []
+                    var rows = httpRequest.responseText.split("|");
+                    for (let i=0;i<r.length;i++)
+                    {
+                        var row = document.createElement('tr');
+                        var cell1 = document.createElement('td');
+                        var cell2 = document.createElement('td');
+                        var cell3 = document.createElement('td');
+                        table.appendChild(row);
+                        row.appendChild(cell1);
+                        row.appendChild(cell2);
+                        row.appendChild(cell3);
+
+                        var names = rows[i].split(":");
+                        var values = names[1].split("=");
+                        cell1.textContent = names[0];
+                        cell2.textContent = values[0];
+                        cell3.textContent = values[1];
+                    }
+                    console.log(httpRequest.responseText);
+                }
+                else
+                {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+  }
+
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";}
+</script>
+<!--src="{{ url_for('static', filename='js/script.js') }}"-->
+</body>
+</html>

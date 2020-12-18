@@ -1,0 +1,60 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 17px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+fieldset {
+    padding: .35em .75em .625em
+}
+
+legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+html {
+    -ms-text-size-adjust: 100%;
+}
+
+*{
+  margin:0px;
+  padding:0px;
+}
+
+
+
+
+table {
+  margin: 1em 0;
+}
+
+table, th, td {
+  /* moon-gray */
+  border: 1px solid #000;
+}
+
+th, td {
+  padding: 0.5em;
+}

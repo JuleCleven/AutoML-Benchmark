@@ -1,0 +1,160 @@
+<html>
+  <!-- <link rel="stylesheet" href="../static/app.css"> -->
+<body>
+  <div class="overflow-auto ph5 pv4">
+      <table class="w-100 mw8 center" cellspacing="0">
+        <caption  style="caption-side: top">Table 3. Performance of the AutoML Systems Applied on a Production Use Case</caption>
+        <thead>       
+          <tr>
+            <th rowspan=3 class="ts bl fw6 bt b--black tc double-bottom bb thick-br ipt-green1" width=160><div class="system-header">System</div ></th>
+          </tr>
+          <tr>
+            <th class="ts fw6 bt b--black tc bb br ipt-green2" colspan=6>Classification</th>
+          </tr>
+            <th class="ts fw6 bt b--black tc double-bottom br ipt-green3">Accuracy</th>
+            <th class="ts fw6 bt b--black tc double-bottom br ipt-green3">Logarithm Loss</th>
+            <th class="ts fw6 bt b--black tc double-bottom br ipt-green3">F1 Score</th>
+            <th class="ts fw6 bt b--black tc double-bottom br ipt-green3">AUC</th>
+            <th class="ts fw6 bt b--black tc double-bottom br ipt-green3">Confusion Matrix Provided</th>
+            <th class="ts fw6 bt b--black tc double-bottom br ipt-green3">Runtime</th>
+        </thead>
+        <tbody class="lh-copy ipt-green4">
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>Hyperopt-sklearn</i></td> <!-- Systems -->
+            <td class="ts tc bb br">0.9883</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.4</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9889</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">-</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">47 min</td> <!-- Finding best model -->
+          </tr>
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>Auto-sklearn</i></td> <!-- Systems -->
+            <td class="ts tc bb br">0.9964</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.1229</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9966</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">-</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">120 min</td> <!-- Finding best model -->
+          </tr>
+         
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>TPOT</i></td>
+            <!-- Systems -->
+            <td class="ts tc bb br">0.9928</td> <!-- Accuracy -->
+            <td class="ts tc bb br">-0.0287</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9928</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.9993</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">68.93 min</td> <!-- Finding best model -->
+          </tr>
+          <tr>
+            
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>H2O AutoML</i></td>
+            <!-- Systems -->
+            <td class="ts tc bb br">0.999</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.01207</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">-</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.999</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">53.1 min</td> <!-- Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>SAS</i></td> <!-- Systems -->
+            <td class="ts tc bb br">0.994</td> <!-- Accuracy -->
+            <td class="ts tc bb br">-</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.995</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">-</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br"></td> <!-- Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>MLBox</i></td>
+            <!-- Systems -->
+            <td class="ts tc bb br">0.9937</td> <!-- Accuracy -->
+            <td class="ts tc bb br">-</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">-</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">-</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br"></td> <!-- Finding best model -->
+            <!-- <td class="ts tc bb br">40 iterations</td> Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>Google AutoML</i></td>
+            <!-- Systems -->
+            <td class="ts tc bb br">0.996</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.014</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9955</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.999</td> <!-- AUC -->
+            <td class="ts tc bb br">Yes</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">60 min</td> <!-- Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>Azure Machine Learning</i>
+            </td> <!-- Systems -->
+            <td class="ts tc bb br">0.9917</td> <!-- Accuracy -->
+            <td class="ts tc bb br">-</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9917</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.9996</td> <!-- AUC -->
+            <td class="ts tc bb br">Yes</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">50 min</td> <!-- Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>MLJar</i></td> <!-- Systems -->
+            <td class="ts tc bb br">-</td> <!-- Accuracy -->
+            <td class="ts tc bb br">-</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">-</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.9997</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">77 min</td> <!-- Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>ATM</i></td> <!-- Systems -->
+            <td class="ts tc bb br">0.9998</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.0045</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9998</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.9998</td> <!-- AUC -->
+            <td class="ts tc bb br">Yes</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">115 min</td> <!-- Finding best model -->
+          </tr>
+
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>Auto_ml</i>
+            </td> <!-- Systems -->
+            <td class="ts tc bb br">0.9914</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.2959</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9918</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.9913</td> <!-- AUC -->
+            <td class="ts tc bb br">Yes</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br"></td> <!-- Finding best model -->
+          </tr>
+          
+          <tr>
+            <td class="ts tl bb thick-br bl ph2"><i>AutoKeras</i></td>
+            <!-- Systems -->
+            <td class="ts tc bb br">0.9997</td> <!-- Accuracy -->
+            <td class="ts tc bb br">0.004</td> <!-- Logarithm Loss[-1 - 1] -->
+            <td class="ts tc bb br">0.9964</td> <!-- F1 Score[0-1] -->
+            <td class="ts tc bb br">0.9961</td> <!-- AUC -->
+            <td class="ts tc bb br">No</td> <!-- Confusion Matrix -->
+            <td class="ts tc bb br">60.7 min</td> <!-- Finding best model -->
+          </tr>
+        </tbody>
+      </table>
+      <div class="ts color-grey-700 mv2" style="text-align: center">
+        A "-" means that the information is not explicitly given by the system.
+        An empty field means that the information is missing in the current version of our analysis.<br>
+
+        There may be more algorithms used by these systems which are not explicitly stated.
+      </div>
+    </div>
+</body>
+</html>
