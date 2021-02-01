@@ -553,10 +553,20 @@
     <!-- Here is the form -->
     <section class= "ph4">
       <h2 id="form_link">9: Form</h2>
+        <p>
+            The following section contains a tool, which can be used to find the right AutoML system for the User.
+        </p>
+        <p>
+            The question(checkbox?) "Highly Relevant?" excludes systems from the results, if they don't confirm to your
+            requested conditions. This can be decided for each question separately.
+        </p>
+        <p>
+            The results will be shown in a table containing the name, score and percentage of their match with the information you have entered.
+        </p>
     <form id="regForm" action="/process" method="POST">
-        <h1 style="text-align:center;">AutoML System Filter</h1>
+        <h2 style="text-align:center;">AutoML System Filter</h2>
         <div class="tab">
-                <h2>Requirements and Boundaries of the AutoML Systems:</h2>
+                <h3>Requirements and Boundaries of the AutoML Systems:</h3>
                 <p class="left">Budget: </p>
                 <div class="container_right">
                     <ul class="ks-cboxtags">
@@ -781,7 +791,7 @@
                                 <li><input type="checkbox" id="gradient_boosting" name="gradient_boosting" value="True"><label for="gradient_boosting">Gradient Boosting</label></li>
                                 <li><input type="checkbox" id="knn" name="knn" value="True"><label for="knn">K-NN</label></li>
                                 <li><input type="checkbox" id="random_forest" name="random_forest" value="True"><label for="random_forest">Random Forest</label></li>
-                                <li><input type="checkbox" id="svm" name="svm" value="svm"><label for="data_standardization">SVM</label></li>
+                                <li><input type="checkbox" id="svm" name="svm" value="svm"><label for="svm">SVM</label></li>
                                 <li><input type="checkbox" id="xgboost" name="xgboost" value="True"><label for="xgboost">XGBoost</label></li>
                                 <li><input type="checkbox" id="neural_network" name="neural_network" value="True"><label for="neural_network">Neural Network</label></li>
                                 <li><input type="checkbox" id="regression" name="regression" value="True"><label for="regression">Regression</label></li>
@@ -996,15 +1006,13 @@
             </div>
 
             <div class="tab">
-                <div>
-                    <table id="result" style="width:100%">
-                        <tr>
-                            <th>System</th>
-                            <th>Number Score</th>
-                            <th>Percentage</th>
-                        </tr>
-                    </table>
-                </div>
+                <table id="result" style="grid-column:1/4;">
+                    <tr>
+                        <th>System</th>
+                        <th>Number Score</th>
+                        <th>Percentage</th>
+                    </tr>
+                </table>
             </div>
 
             <div style="overflow:auto;">
@@ -1275,25 +1283,26 @@ function nextPrev(n) {
             {
                 if (httpRequest.status === 200)
                 {
-                   var table = document.getElementsById('result')
+                    var table = document.getElementById("result")
                     var cells = []
                     var rows = httpRequest.responseText.split("|");
-                    for (let i=0;i<r.length;i++)
+                    for (let i=0;i<rows.length;i++)
                     {
                         var row = document.createElement('tr');
                         var cell1 = document.createElement('td');
                         var cell2 = document.createElement('td');
                         var cell3 = document.createElement('td');
-                        table.appendChild(row);
-                        row.appendChild(cell1);
-                        row.appendChild(cell2);
-                        row.appendChild(cell3);
 
                         var names = rows[i].split(":");
                         var values = names[1].split("=");
                         cell1.textContent = names[0];
                         cell2.textContent = values[0];
                         cell3.textContent = values[1];
+
+                        table.appendChild(row);
+                        row.appendChild(cell1);
+                        row.appendChild(cell2);
+                        row.appendChild(cell3);
                     }
                     console.log(httpRequest.responseText);
                 }

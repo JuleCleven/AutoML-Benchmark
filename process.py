@@ -224,8 +224,8 @@ def process():
         len(columns)
 
         for c in columns:
-            if user_info[request_keys[i]] != ('N/A' or None):
-                answercount += 1
+            if user_info[request_keys[i]] != ('N/A' or None):   #ML Algorithms getting their own sccore worth(0.1) ?
+                answercount += 1    #tf did I do here ?
             if c is not None:
                 score[system] += (c and (user_info[request_keys[i]] is True))
             i += 1
@@ -265,7 +265,7 @@ def process():
     result = ''
     for x in range(len(results)):
         result += results[x].name + ':' + str(score[results[x]]) + '=' + str(
-            (score[results[x]] / answercount) * 100) + '%|'
+            (score[results[x]] / answercount) * 100) + '%|'     # end string after 2 decimal places
     return result
 
 

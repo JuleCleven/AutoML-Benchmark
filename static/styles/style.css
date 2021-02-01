@@ -39,6 +39,15 @@ div.tab > div.container{
     grid-column:1/4;
     text-align: center;
 }
+@media screen and (max-width: 850 px){
+    div.tab th:nth-child(3), div.tab td:nth-child(3n+0){
+        display: none;
+    }
+}
+
+div.tab table#result tbody tr th
+div.tab table#result tr td
+
 
 div.tab > div.container_right{
     grid-column:3;
