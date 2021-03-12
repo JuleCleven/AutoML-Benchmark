@@ -1,11 +1,56 @@
-body {
-  background-color: #f1f1f1;
+@font-face {
+    font-family: 'Frutiger LT Com 45 Light';
+    src: url('fonts/FrutigerLTCom-Light.woff2') format('woff2'),
+        url('fonts/FrutigerLTCom-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+html * {
+    /* font-size: 17px; */
+    line-height: 1.6;
+    font-family: 'Frutiger LT Com 45 Light';
 }
 p {
     font-size: 17px;
 }
+
+table, th, td{
+    border: 0.73px solid black;
+    font-size: 12px;
+    line-height: 19.2px;
+}
+
+tbody{
+    background-color: rgb(216, 252, 237);
+}
+
+thead, th{
+    background-color: rgb(111, 194, 159);
+    border: 1.46px solid #000;
+}
+
+/*top left corner*/
+table:nth-child(1) > thead:nth-child(2) > tr:nth-child(1) > th:nth-child(1){
+    background-color: rgb(23, 156, 125);
+}
+table:nth-child(1) > tbody:nth-child(3) > tr:nth-child(n) > td:nth-child(1){
+    border-right-width: 1.46px;
+}
+
+.sidenav > li:nth-child(1){
+    margin-top: 25px;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
 h1 {
     font-size: 2em;
+}
+h2{
+    font-size: 1.4rem;
 }
 legend {
     box-sizing: border-box;
@@ -16,42 +61,21 @@ legend {
     white-space: normal
 }
 
-div.tab {
-  display: none;
-  grid-template-columns: 2fr 1fr 1fr;
+.mv2{
+    color: #616161;
+    font-size: 12px;
+    line-height: 1.6;
 }
 
-div.tab > h2 {
-    grid-column: 1/4;
-    text-align: center;
-}
-div.tab > h3 {
-    grid-column: 1/4;
-    text-align: center;
+
+td:nth-child(1) {
+  font-style: italic;
 }
 
-div.tab > p.left{
-    grid-column:1;
-    padding:7px 0px;
-}
-
-div.tab > div.container{
-    grid-column:1/4;
-    text-align: center;
-}
-@media screen and (max-width: 850 px){
-    div.tab th:nth-child(3), div.tab td:nth-child(3n+0){
-        display: none;
-    }
-}
-
-div.tab table#result tbody tr th
-div.tab table#result tr td
-
-
-div.tab > div.container_right{
-    grid-column:3;
-    justify-self:end;
+li {
+    line-height: 1.6;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 ul.sidenav{
@@ -90,22 +114,6 @@ li.sidebar{
   font-size: 16px;
   line-height: 25.6px;
   }
-
-div.main{
-    color: rgb(33, 37, 41);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 20px;
-    line-height: 25.6px;
-    margin-left: 200px;
-    margin-right: 0px
-    padding-right: 10px;
-    }
-
-.wrapper {
-    grid-column:1/4;
-    margin: 20px 0;
-}
-
 .toggle_radio{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -117,7 +125,7 @@ div.main{
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-
+    margin-bottom: 20px;
 }
 
 .toggle_radio input[type=radio]{
@@ -125,7 +133,6 @@ div.main{
 }
 .toggle_radio label{
     color: rgb(33, 37, 41);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     color: rgba(0,0,0,.9);
     z-index: 0;
     height: 20px;
@@ -133,11 +140,13 @@ div.main{
     border-radius: 10px;
     cursor: pointer;
     z-index: 1;
+    font-size: 15px;
 
   /*background: rgba(0,0,0,.1);*/
   text-align: center;
   /*background: blue;*/ /*make it blue*/
 }
+
 .toggle_option_slider{
   /*display: none;
   background: red;
@@ -160,12 +169,14 @@ input[value="True"]:checked ~ .toggle_option_slider{
   grid-column:1/2;
   align-self: center;
 }
+
 input[value="N/A"]:checked ~ .toggle_option_slider{
   background: rgba(0,0,0,.3);
   border: 2px solid rgba(0,0,0,.1);
   grid-column:2/3;
   align-self: center;
 }
+
 input[value="False"]:checked ~ .toggle_option_slider{
   background: rgba(255,0,0,.3);
   border: 2px solid rgba(255,0,0,.1);
@@ -173,6 +184,62 @@ input[value="False"]:checked ~ .toggle_option_slider{
   align-self: center;
 }
 
+.switch_radio{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 !important;
+    background: rgba(0,0,0,.1);
+    height: 24px;
+    position: relative;
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.switch_radio input[type=radio]{
+  display: none;
+}
+.switch_radio label{
+    color: rgb(33, 37, 41);
+    color: rgba(0,0,0,.9);
+    z-index: 0;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 15px;
+  /*background: rgba(0,0,0,.1);*/
+  text-align: center;
+}
+
+.switch_option_slider{
+  /*display: none;
+  background: red;
+  object-fit: contain;*/
+  width:98%;
+  height: 24px;
+  position: absolute;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+input[value="True"]:checked ~ .switch_option_slider{
+  background: rgba(0,255,0,.3);
+  border: 2px solid rgba(0,255,0,.1);
+  grid-column:1/2;
+  align-self: center;
+}
+
+input[value="False"]:checked ~ .switch_option_slider{
+  background: rgba(255,0,0,.3);
+  border: 2px solid rgba(255,0,0,.1);
+  grid-column:2/3;
+  align-self: center;
+}
 
 
 input[type=checkbox] {
@@ -183,32 +250,40 @@ display: none;
     max-width: 100%;
     font-size: 13px;
 }
+
 .container_right {
     max-width: 100%;
     font-size: 13px;
+    display:flex;
+    align-items: center;
 }
+
 ul.ks-cboxtags {
     list-style: none;
     padding: 0px;
+    margin: 0;
+
 }
+
 ul.ks-cboxtags li{
   display: inline;
 }
+
 ul.ks-cboxtags li label{
     display: inline-block;
     background-color: rgba(0,0,0,.1);
     border: 2px solid rgba(0,0,0,.1);
     color: rgb(0,0,0);
-    border-radius: 25px;
+    border-radius: 21px;
     white-space: nowrap;
-    margin: 3px 0px;
+    margin: 2px;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
     transition: all .2s;
 }
 
 ul.ks-cboxtags li label {
-    padding: 8px 12px;
+    padding: 4px 4px;
     cursor: pointer;
 }
 
@@ -222,10 +297,12 @@ ul.ks-cboxtags li input[type="checkbox"]:checked + label {
 ul.ks-cboxtags li input[type="checkbox"] {
   display: inline;
 }
+
 ul.ks-cboxtags li input[type="checkbox"] {
   position: absolute;
   opacity: 0;
 }
+
 ul.ks-cboxtags li input[type="checkbox"]:focus + label {
   border: 2px solid rgba(0,200,0,.5);
 }
@@ -250,7 +327,7 @@ button {
   border: none;
   padding: 10px 20px;
   font-size: 17px;
-  font-family: Raleway;
+font-family: Frutiger LT Com 45 Li;
   cursor: pointer;
 }
 
@@ -283,32 +360,9 @@ button:hover {
   background-color: #19a974;
 }
 
-/*top row*/
-thead{
-    background-color: rgb(111, 194, 159);
-    font-size: 16px;
-    line-height: 24px;
-    border: 1px solid #000;
-}
-
-/*top left corner*/
-table:nth-child(1) > thead:nth-child(2) > tr:nth-child(1) > th:nth-child(1){
-    background-color: rgb(23, 156, 125);
-    border: 1px solid #000;
-    color: rgb(33, 37, 41);
-}
-
-
-tbody{
-    background-color: rgb(216, 252, 237);
-    font-size: 16px;
-    line-height: 24px;
-    border: 1px solid #000;
-}
-
 div.main{
     color: rgb(33, 37, 41);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: Frutiger LT Com 45 Light;
     font-size: 20px;
     line-height: 25.6px;
     margin-left: 200px;
@@ -316,3 +370,72 @@ div.main{
     padding-right: 10px;
 }
 
+.wrapper_switch {
+    grid-column:2/3;
+    margin:  0;
+    allign-self: center;
+}
+
+div.tab {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+div.tab > h2 {
+    grid-column: 1/4;
+    text-align: center;
+}
+div.tab > h3 {
+    grid-column: 1/4;
+}
+
+div.tab > p.left{
+    display: flex;
+    grid-column:1;
+    padding:7px 5px;
+    margin: 0;
+    align-items: center;
+}
+
+div.tab > div.container{
+    grid-column:1/4;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+div.tab > div.container_right{
+    grid-column:3/4;
+    justify-self:end;
+}
+.wrapper_toggle {
+    grid-column:1/4;
+    margin: 0;
+}
+
+/* Responsive Grid on small screens */
+    @media screen and (max-width: 900px) {
+
+      div.tab {
+        grid-template-columns: 1fr 1fr ;
+      }
+
+      div.tab > h2 {
+          grid-column: 1/3;
+      }
+      div.tab > h3 {
+          grid-column: 1/3;
+      }
+
+      div.tab > div.container{
+          grid-column:1/3;
+      }
+
+      div.tab > div.container_right{
+          grid-column:2/3;
+      }
+
+      .wrapper_toggle {
+          grid-column:1/3;
+      }
+    }

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
 <head>
   <!--This is where we define the functions to load the tables -->
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
   <script>
   $(function(){
     $("#characteristics_table").load("static/include/characteristics_table.html");
@@ -41,32 +42,28 @@
   $(function(){
     $("#personas_cards").load("static/include/personas_cards.html");
   });
-
-  $(function(){
-    $("#form").load("static/include/form.html");
-  });
   </script>
+
   <!--This is where we are done loading the tables -->
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/app.css') }}">-->
+  <link rel="stylesheet" href="../static/styles/app.css">
+<!--  <link rel="stylesheet" href="../static/styles/bootstrapDoc.css">-->
+<!--  <link rel="stylesheet" href="../static/style/tachyonsDoc.css">-->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+<!--  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/app.css') }}">-->
   <link rel="shortcut icon"  href="{{ url_for('static', filename='favicon.ico') }}">
 
 </head>
 <body>
     <form id="regForm" action="/process" method="POST">
-        <h1 style="text-align:center;">AutoML System Filter</h1>
+        <h2 style="text-align:center;">AutoML System Selection Tool</h2>
         <div class="tab">
-                <h2>Requirements and Boundaries of the AutoML Systems:</h2>
-                <p class="left">Budget: </p>
-                <div class="container_right">
-                    <ul class="ks-cboxtags">
-                        <li><input type="checkbox" id="crit_payment" name="crit_payment" value="True"><label for="crit_payment">Highly Relevant ?</label></li>
-                    </ul>
-                </div>
-                <div class="wrapper">
+                <h3>Requirements and Boundaries of the AutoML Systems:</h3>
+                <p>Budget: </p>
+                <div class="wrapper_toggle">
                     <div class="toggle_radio">
                         <input type="radio" class="toggle_option" id="payment-y" name="payment" value="True">
                         <input type="radio" checked class="toggle_option" id="payment-na" name="payment" value="N/A">
@@ -74,18 +71,22 @@
                         <label for="payment-y">Yes</label>
                         <label for="payment-na">N/A</label>
                         <label for="payment-n">No</label>
-                        <div class="toggle_option_slider">
-                        </div>
+                        <div class="toggle_option_slider"></div>
+                    </div>
+                </div>
+                <p><i>Highly relevant ?</i></p>
+                <div class="wrapper_switch">
+                    <div class="switch_radio">
+                        <input type="radio" class="switch_option" name="crit_payment" id="crit-payment-y" value="True">
+                        <input type="radio" checked class="switch_option" name="crit_payment" id="crit-payment-n" value="False">
+                        <label for="crit-payment-y">Yes</label>
+                        <label for="crit-payment-n">No</label>
+                        <div class="switch_option_slider"></div>
                     </div>
                 </div>
                 <h3>Programming Experience:</h3>
-                    <p class="alignleft">Programming Skills: </p>
-                        <div class="container_right">
-                            <ul class="ks-cboxtags">
-                                <li><input type="checkbox" class="alignright"  id="crit_programming_skills" name="crit_programming_skills" value="True"><label for="crit_programming_skills">Highly Relevant ?</label></li>
-                            </ul>
-                        </div>
-                    <div class="wrapper">
+                    <p class="left">Programming Skills: </p>
+                    <div class="wrapper_toggle">
                         <div class="toggle_radio">
                             <input type="radio" class="toggle_option" id="programming_skills-y" name="programming_skills" value="True">
                             <input type="radio" checked class="toggle_option" id="programming_skills-na" name="programming_skills" value="N/A">
@@ -93,17 +94,21 @@
                             <label for="programming_skills-y">Yes</label>
                             <label for="programming_skills-na">N/A</label>
                             <label for="programming_skills-n">No</label>
-                            <div class="toggle_option_slider">
-                            </div>
+                            <div class="toggle_option_slider"></div>
                         </div>
                     </div>
-                    <p class="alignleft">Data Science Skills: </p>
-                    <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_datascience_skills" name="crit_datascience_skills" value="True"><label for="crit_datascience_skills">Highly Relevant ?</label></li>
-                        </ul>
+                    <p><i>Highly relevant ?</i></p>
+                    <div class="wrapper_switch">
+                        <div class="switch_radio">
+                            <input type="radio" class="switch_option" name="crit_programming_skills" id="crit-programming_skills-y" value="True">
+                            <input type="radio" checked class="switch_option" name="crit_programming_skills" id="crit-programming_skills-n" value="False">
+                            <label for="crit-programming_skills-y">Yes</label>
+                            <label for="crit-programming_skills-n">No</label>
+                            <div class="switch_option_slider"></div>
+                        </div>
                     </div>
-                    <div class="wrapper">
+                    <p class="left">Data Science Skills: </p>
+                    <div class="wrapper_toggle">
                         <div class="toggle_radio">
                             <input type="radio" class="toggle_option" id="datascience_skills-y" name="datascience_skills" value="True">
                             <input type="radio" checked class="toggle_option" id="datascience_skills-na" name="datascience_skills" value="N/A">
@@ -111,16 +116,20 @@
                             <label for="datascience_skills-y">Yes</label>
                             <label for="datascience_skills-na">N/A</label>
                             <label for="datascience_skills-n">No</label>
-                            <div class="toggle_option_slider">
-                            </div>
+                            <div class="toggle_option_slider"></div>
                         </div>
                     </div>
-                    <p class="alignleft">Programming Languages:</p>
-                        <div class="container_right">
-                            <ul class="ks-cboxtags">
-                                <li><input type="checkbox" id="crit_prog_lang" name="crit_prog_lang" value="True"><label for="crit_prog_lang">Highly Relevant ?</label></li>
-                            </ul>
+                    <p><i>Highly relevant ?</i></p>
+                    <div class="wrapper_switch">
+                        <div class="switch_radio">
+                            <input type="radio" class="switch_option" name="crit_datascience_skills" id="crit-datascience_skills-y" value="True">
+                            <input type="radio" checked class="switch_option" name="crit_datascience_skills" id="crit-datascience_skills-n" value="False">
+                            <label for="crit-datascience_skills-y">Yes</label>
+                            <label for="crit-datascience_skills-n">No</label>
+                            <div class="switch_option_slider"></div>
                         </div>
+                    </div>
+                    <p class="left">Programming Languages: </p>
                     <div class="container">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" id="python" name="python" value="True"><label for="python">Python</label></li>
@@ -129,13 +138,19 @@
                             <li><input type="checkbox" id="scala" name="scala" value="True"><label for="scala">Scala</label></li>
                         </ul>
                     </div>
-                <p class="alignleft">Cloud Computing:</p>
-                    <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_cloud_computing" name="crit_cloud_computing" value="True"><label for="crit_cloud_computing">Highly Relevant ?</label></li>
-                        </ul>
+                    <p><i>Highly relevant ?</i></p>
+                    <div class="wrapper_switch">
+                        <div class="switch_radio">
+                            <input type="radio" class="switch_option" name="crit_prog_lang" id="crit-prog_lang-y" value="True">
+                            <input type="radio" checked class="switch_option" name="crit_prog_lang" id="crit-prog_lang-n" value="False">
+                            <label for="crit-prog_lang-y">Yes</label>
+                            <label for="crit-prog_lang-n">No</label>
+                            <div class="switch_option_slider"></div>
+                        </div>
                     </div>
-                <div class="wrapper">
+
+                <p class="left">Cloud Computing:</p>
+                <div class="wrapper_toggle">
                     <div class="toggle_radio">
                         <input type="radio" class="toggle_option" id="cloud_computing-y" name="cloud_computing" value="True">
                         <input type="radio" checked class="toggle_option" id="cloud_computing-na" name="cloud_computing" value="N/A">
@@ -143,16 +158,21 @@
                         <label for="cloud_computing-y">Yes</label>
                         <label for="cloud_computing-na">N/A</label>
                         <label for="cloud_computing-n">No</label>
-                        <div class="toggle_option_slider">
-                        </div>
+                        <div class="toggle_option_slider"></div>
                     </div>
                 </div>
-                <p class="alignleft">Operating System:</p>
-                    <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_os" name="crit_os" value="True"><label for="crit_os">Highly Relevant ?</label></li>
-                        </ul>
+                <p><i>Highly relevant ?</i></p>
+                <div class="wrapper_switch">
+                    <div class="switch_radio">
+                        <input type="radio" class="switch_option" name="crit_cloud_computing" id="crit-cloud_computing-y" value="True">
+                        <input type="radio" checked class="switch_option" name="crit_cloud_computing" id="crit-cloud_computing-n" value="False">
+                        <label for="crit-cloud_computing-y">Yes</label>
+                        <label for="crit-cloud_computing-n">No</label>
+                        <div class="switch_option_slider"></div>
                     </div>
+                </div>
+
+                <p class="left">Operating System:</p>
                 <div class="container">
                     <ul class="ks-cboxtags">
                         <li><input type="checkbox" id="linux" name="linux" value="True"><label for="linux">Linux</label></li>
@@ -160,30 +180,21 @@
                         <li><input type="checkbox" id="windows" name="windows" value="True"><label for="windows">Windows</label></li>
                     </ul>
                 </div>
+                <p><i>Highly relevant ?</i></p>
+                <div class="wrapper_switch">
+                    <div class="switch_radio">
+                        <input type="radio" class="switch_option" name="crit_os" id="crit-os-y" value="True">
+                        <input type="radio" checked class="switch_option" name="crit_os" id="crit-os-n" value="False">
+                        <label for="crit-os-y">Yes</label>
+                        <label for="crit-os-n">No</label>
+                        <div class="switch_option_slider"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="tab">
                     <h2>Data Types Accepted by each AutoML System:</h2>
-                    <p class="alignleft">Automatic: </p>
-                    <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_automatic" name="crit_cloud_computing" value="True"><label for="crit_automatic">Highly Relevant ?</label></li>
-                        </ul>
-                    </div>
-                <div class="wrapper">
-                    <div class="toggle_radio">
-                        <input type="radio" class="toggle_option" id="automatic-y" name="automatic" value="True">
-                        <input type="radio" checked class="toggle_option" id="automatic-na" name="automatic" value="N/A">
-                        <input type="radio" class="toggle_option" id="automatic-n" name="automatic" value="False">
-                        <label for="automatic-y">Yes</label>
-                        <label for="automatic-na">N/A</label>
-                        <label for="automatic-n">No</label>
-                        <div class="toggle_option_slider">
-                        </div>
-                    </div>
-                </div>
-
-                  <p class="alignleft">Accepted Input Datatypes:</p>
+                  <p class="left">Accepted Input Datatypes:</p>
                     <div class="container_right">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" class="alignright" id="crit_data_types" name="crit_data_types" value="True"><label for="crit_data_types">Highly Relevant ?</label></li>
@@ -200,22 +211,7 @@
                     </ul>
                 </div>
                     <h3>Preparation of the Integrated Data for Modeling</h3>
-                    <p class="alignleft">Input Required:</p>
-                    <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_input" name="crit_input" value="True"><label for="crit_input">Highly Relevant ?</label></li>
-                        </ul>
-                    </div>
-                <div class="container">
-                    <ul class="ks-cboxtags">
-                        <li><input type="checkbox" id="train+test" name="input_required" value="train+test"><label for="train+test">Train and test datasets</label></li>
-                        <li><input type="checkbox" id="whole_dataset" name="input_required" value="whole_dataset"><label for="whole_dataset">Whole dataset</label></li>
-                        <li><input type="checkbox" id="no_target" name="input_required" value="no_target"><label for="no_target">Train and test datasets, Testset must not contain a target</label></li>
-                        <li><input type="checkbox" id="set+relation" name="input_required" value="set+relation"><label for="set+relation">Datasets and relations between them</label></li>
-                        <li><input type="checkbox" id="time+target" name="input_required" value="time+target"><label for="time+target">Time series dataset and target dataset</label></li>
-                    </ul>
-                </div>
-                        <p class="alignleft">Data Preprocessing: </p>
+                        <p class="left">Data Preprocessing: </p>
                         <div class="container_right">
                           <ul class="ks-cboxtags">
                               <li><input type="checkbox" class="alignright" id="crit_processing" name="crit_processing" value="True"><label for="crit_processing">Highly Relevant ?</label></li>
@@ -233,7 +229,7 @@
                                 <li><input type="checkbox" id="data_augmentation" name="data_augmentation" value="True"><label for="data_augmentation">Data Augmentation</label></li>
                             </ul>
                         </div>
-                        <p class="alignleft">Feature Engineering: </p>
+                        <p class="left">Feature Engineering: </p>
                         <div class="container_right">
                           <ul class="ks-cboxtags">
                               <li><input type="checkbox" class="alignright" id="crit_feature_engineering" name="crit_processing" value="True"><label for="crit_feature_engineering">Highly Relevant ?</label></li>
@@ -248,7 +244,7 @@
                 </div>
             <div class="tab">
                 <h2>Modeling Approach and Diagnosis:</h2>
-                <p class="alignleft">Training:</p>
+                <p class="left">Training:</p>
                 <div class="container_right">
                     <ul class="ks-cboxtags">
                         <li><input type="checkbox" class="alignright" id="crit_training" name="crit_training" value="True"><label for="crit_training">Highly Relevant ?</label></li>
@@ -266,7 +262,7 @@
                         </div>
                     </div>
                 </div>
-                    <p class="alignleft">ML Algorithms:</p>
+                    <p class="left">ML Algorithms:</p>
                         <div class="container_right">
                           <ul class="ks-cboxtags">
                               <li><input type="checkbox" class="alignright" id="crit_ml_algorithms" name="crit_ml_algorithms" value="True"><label for="crit_ml_algorithms">Highly Relevant ?</label></li>
@@ -284,7 +280,7 @@
                                 <li><input type="checkbox" id="gradient_boosting" name="gradient_boosting" value="True"><label for="gradient_boosting">Gradient Boosting</label></li>
                                 <li><input type="checkbox" id="knn" name="knn" value="True"><label for="knn">K-NN</label></li>
                                 <li><input type="checkbox" id="random_forest" name="random_forest" value="True"><label for="random_forest">Random Forest</label></li>
-                                <li><input type="checkbox" id="svm" name="svm" value="svm"><label for="data_standardization">SVM</label></li>
+                                <li><input type="checkbox" id="svm" name="svm" value="svm"><label for="svm">SVM</label></li>
                                 <li><input type="checkbox" id="xgboost" name="xgboost" value="True"><label for="xgboost">XGBoost</label></li>
                                 <li><input type="checkbox" id="neural_network" name="neural_network" value="True"><label for="neural_network">Neural Network</label></li>
                                 <li><input type="checkbox" id="regression" name="regression" value="True"><label for="regression">Regression</label></li>
@@ -296,7 +292,7 @@
                                 <li><input type="checkbox" id="ml_algorithms_included" name="ml_algorithms_included" value="False"><label for="ml_algorithms_included">No ML Algorithms</label></li>
                             </ul>
                         </div>
-                <p class="alignleft">Anti-overfitting approach:</p>
+                <p class="left">Anti-overfitting approach:</p>
                 <div class="container_right">
                     <ul class="ks-cboxtags">
                         <li><input type="checkbox" class="alignright" id="crit_anti_overfitting_approach" name="crit_anti_overfitting_approach" value="True"><label for="crit_anti_overfitting_approach">Highly Relevant ?</label></li>
@@ -315,7 +311,7 @@
                     </div>
                 </div>
                     <h3>Algorithm Selection:</h3>
-                    <p class="alignleft">Evaluation Approach:</p>
+                    <p class="left">Evaluation Approach:</p>
                     <div class="container_right">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" class="alignright" id="crit_evaluation_approach" name="crit_evaluation_approach" value="True"><label for="crit_evaluation_approach">Highly Relevant ?</label></li>
@@ -333,7 +329,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="alignleft">Search:</p>
+                    <p class="left">Search:</p>
                     <div class="container_right">
                           <ul class="ks-cboxtags">
                               <li><input type="checkbox" class="alignright" id="crit_search" name="crit_search" value="True"><label for="crit_search">Highly Relevant ?</label></li>
@@ -347,7 +343,7 @@
                                 <li><input type="checkbox" id="no_search" name="search" value="None"><label for="no_search">None</label></li>
                             </ul>
                         </div>
-                    <p class="alignleft">GUI:</p>
+                    <p class="left">GUI:</p>
                     <div class="container_right">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" class="alignright" id="crit_gui" name="crit_gui" value="True"><label for="crit_gui">Highly Relevant ?</label></li>
@@ -365,7 +361,7 @@
                             </div>
                         </div>
                     </div>
-                <p class="alignleft">Hyperparameter Selection:</p>
+                <p class="left">Hyperparameter Selection:</p>
                 <div class="container_right">
                     <ul class="ks-cboxtags">
                         <li><input type="checkbox" class="alignright" id="crit_hyper_selection" name="crit_hyper_selection" value="True"><label for="crit_hyper_selection">Highly Relevant ?</label></li>
@@ -384,7 +380,7 @@
                     </div>
                 </div>
                     <h3>Diagnosis:</h3>
-                    <p class="alignleft">Metrics:</p>
+                    <p class="left">Metrics:</p>
                     <div class="container_right">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" class="alignright" id="crit_metrics" name="crit_metrics" value="True"><label for="crit_metrics">Highly Relevant ?</label></li>
@@ -402,7 +398,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="alignleft">Charts:</p>
+                    <p class="left">Charts:</p>
                     <div class="container_right">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" class="alignright" id="crit_charts" name="crit_charts" value="True"><label for="crit_charts">Highly Relevant ?</label></li>
@@ -424,7 +420,7 @@
 
             <div class="tab">
                 <h2>Deployment for Production:</h2>
-                <p class="alignleft">Web Service:</p>
+                <p class="left">Web Service:</p>
                 <div class="container_right">
                         <ul class="ks-cboxtags">
                             <li><input type="checkbox" class="alignright" id="crit_web_service" name="crit_web_service" value="True"><label for="crit_web_service">Highly Relevant ?</label></li>
@@ -442,72 +438,75 @@
                             </div>
                         </div>
                     </div>
-                <p class="alignleft">Online Model Training:</p>
+                <p class="left">Online Model Training:</p>
                 <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_online_model_training" name="crit_online_model_training" value="True"><label for="crit_online_model_training">Highly Relevant ?</label></li>
-                        </ul>
-                    </div>
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" class="alignright" id="crit_online_model_training" name="crit_online_model_training" value="True"><label for="crit_online_model_training">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
                 <div class="wrapper">
-                        <div class="toggle_radio">
-                            <input type="radio" class="toggle_option" id="online_model_training-y" name="online_model_training" value="True">
-                            <input type="radio" checked class="toggle_option" id="online_model_training-na" name="online_model_training" value="N/A">
-                            <input type="radio" class="toggle_option" id="online_model_training-n" name="online_model_training" value="False">
-                            <label for="online_model_training-y">Yes</label>
-                            <label for="online_model_training-na">N/A</label>
-                            <label for="online_model_training-n">No</label>
-                            <div class="toggle_option_slider">
-                            </div>
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="online_model_training-y" name="online_model_training" value="True">
+                        <input type="radio" checked class="toggle_option" id="online_model_training-na" name="online_model_training" value="N/A">
+                        <input type="radio" class="toggle_option" id="online_model_training-n" name="online_model_training" value="False">
+                        <label for="online_model_training-y">Yes</label>
+                        <label for="online_model_training-na">N/A</label>
+                        <label for="online_model_training-n">No</label>
+                        <div class="toggle_option_slider">
                         </div>
                     </div>
+                </div>
                 <h2>Results Available for the User:</h2>
-                <p class="alignleft">Preliminary Results:</p>
+                <p class="left">Preliminary Results:</p>
                 <div class="container_right">
-                        <ul class="ks-cboxtags">
-                            <li><input type="checkbox" class="alignright" id="crit_pre-results" name="crit_pre-results" value="True">
-                                <label for="crit_pre-results">Highly Relevant ?</label></li>
-                        </ul>
-                    </div>
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" class="alignright" id="crit_pre-results" name="crit_pre-results" value="True">
+                        <label for="crit_pre-results">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
                 <div class="wrapper">
-                        <div class="toggle_radio">
-                            <input type="radio" class="toggle_option" id="pre-results-y" name="pre-results" value="True">
-                            <input type="radio" checked class="toggle_option" id="pre-results-na" name="pre-results" value="N/A">
-                            <input type="radio" class="toggle_option" id="pre-results-n" name="pre-results" value="False">
-                            <label for="pre-results-y">Yes</label>
-                            <label for="pre-results-na">N/A</label>
-                            <label for="pre-results-n">No</label>
-                            <div class="toggle_option_slider">
-                            </div>
+                    <div class="toggle_radio">
+                        <input type="radio" class="toggle_option" id="pre-results-y" name="pre-results" value="True">
+                        <input type="radio" checked class="toggle_option" id="pre-results-na" name="pre-results" value="N/A">
+                        <input type="radio" class="toggle_option" id="pre-results-n" name="pre-results" value="False">
+                        <label for="pre-results-y">Yes</label>
+                        <label for="pre-results-na">N/A</label>
+                        <label for="pre-results-n">No</label>
+                        <div class="toggle_option_slider">
                         </div>
                     </div>
-                <p class="alignleft">Final Results:</p>
+                </div>
+                <p class="left">Final Results:</p>
                 <div class="container_right">
-                          <ul class="ks-cboxtags">
-                              <li><input type="checkbox" class="alignright" id="crit_results" name="crit_results" value="True"><label for="crit_results">Highly Relevant ?</label></li>
-                          </ul>
-                        </div>
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" class="alignright" id="crit_results" name="crit_results" value="True"><label for="crit_results">Highly Relevant ?</label></li>
+                    </ul>
+                </div>
                 <div class="container">
-                            <ul class="ks-cboxtags">
-                                <li><input type="checkbox" id="best_model" name="best_model" value="True"><label for="best_model">Best Model</label></li><li><input type="checkbox" id="evaluation" name="evaluation" value="True"><label for="evaluation">Evaluation</label></li>
-                                <li><input type="checkbox" id="ensamble_models" name="ensamble_models" value="True search"><label for="ensamble_models">Ensamble</label></li>
-                                <li><input type="checkbox" id="model_characteristics" name="model_characteristics" value="True"><label for="model_characteristics">Model Characteristics</label></li>
-                                <li><input type="checkbox" id="leaderboard" name="leaderboard" value="True"><label for="leaderboard">Leaderboard of algorithms tested</label></li>
-                                <li><input type="checkbox" id="written_reports" name="written_reports" value="True search"><label for="written_reports">Reports written in natural language</label></li>
-                                <li><input type="checkbox" id="feature_matrix" name="feature_matrix" value="True"><label for="feature_matrix">Feature Matrix</label></li>
-                            </ul>
-                        </div>
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" id="best_model" name="best_model" value="True"><label for="best_model">Best Model</label></li><li><input type="checkbox" id="evaluation" name="evaluation" value="True"><label for="evaluation">Evaluation</label></li>
+                        <li><input type="checkbox" id="ensamble_models" name="ensamble_models" value="True search"><label for="ensamble_models">Ensamble</label></li>
+                        <li><input type="checkbox" id="model_characteristics" name="model_characteristics" value="True"><label for="model_characteristics">Model Characteristics</label></li>
+                        <li><input type="checkbox" id="leaderboard" name="leaderboard" value="True"><label for="leaderboard">Leaderboard of algorithms tested</label></li>
+                        <li><input type="checkbox" id="written_reports" name="written_reports" value="True search"><label for="written_reports">Reports written in natural language</label></li>
+                        <li><input type="checkbox" id="feature_matrix" name="feature_matrix" value="True"><label for="feature_matrix">Feature Matrix</label></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="tab">
-                <div>
-                    <table id="result" style="width:100%">
-                        <tr>
-                            <th>System</th>
-                            <th>Number Score</th>
-                            <th>Percentage</th>
-                        </tr>
-                    </table>
-                </div>
+                <table id="result" style="grid-column:1/4;">
+                    <tr>
+                        <th>System</th>
+                        <th>(Number Score)</th>
+                        <th>Match</th>
+                    </tr>
+                </table>
+                <p style="grid-column:1/4; font-size: 12px; margin-top: .5rem; margin-bottom: .5rem; text-align: center;">
+                    The result is shown in a table containing the name of the system and the percentage of their match
+                    with the information you have entered. If there are no systems listed here, please try a different
+                    combination of critical questions.
+                </p>
             </div>
 
             <div style="overflow:auto;">
@@ -535,8 +534,7 @@ showTab(currentTab); // Display the current tab
 function showTab(n) {
   // This function will display the specified tab of the form...
   var x = document.getElementsByClassName("tab");
-  x[n].style.display = "grid";
-  //... and fix the Previous/Next buttons:
+  x[n].style.display = "grid";  //... and fix the Previous/Next buttons:
   if (n == 0 ) {
     document.getElementById("prevBtn").style.display = "none";
   } else {
@@ -578,7 +576,71 @@ function nextPrev(n) {
             {
                 if (httpRequest.status === 200)
                 {
-<!--                    document.getElementById("result").innerHTML = httpRequest.responseText;-->
+                    var table = document.getElementById("result");
+                    table.innerHTML = '<tr><th>System</th><th>(Number Score)</th><th>Match</th></tr>';
+                    var cells = []
+                    var rows = httpRequest.responseText.split("|");
+                    for (let i=0;i<rows.length;i++)
+                    {
+                        var row = document.createElement('tr');
+                        var cell1 = document.createElement('td');
+                        var cell2 = document.createElement('td');
+                        var cell3 = document.createElement('td')
+
+                        var names = rows[i].split(":");
+                        var values = names[1].split("=");
+
+
+
+                        cell1.innerHTML = names[0];
+                        if (String(names[0]) == 'Hyperopt-sklearn') {
+                            cell1.innerHTML += "<sup id='fnref:Hyperoptsklearn'><a href='#fn:Hyperoptsklearn' class='footnote'>1</a></sup>";
+                        } else if (String(names[0]) == 'Auto-sklearn') {
+                            cell1.innerHTML += "<sup id='fnref:Autosklearn'><a href='#fn:Autosklearn' class='footnote'>2</a></sup>";
+                        } else if (String(names[0]) == 'TPOT') {
+                            cell1.innerHTML += "<sup id='fnref:TPOT'><a href='#fn:TPOT' class='footnote'>3</a></sup>";
+                        } else if (String(names[0]) == 'H2O AutoML') {
+                            cell1.innerHTML += "<sup id='fnref:H2O'><a href='#fn:H2O' class='footnote'>4</a></sup>";
+                        } else if (String(names[0]) == 'SAS') {
+                            cell1.innerHTML += "<sup id='fnref:SAS'><a href='#fn:SAS' class='footnote'>5</a></sup>";
+                        } else if (String(names[0]) == 'MLBox') {
+                            cell1.innerHTML += "<sup id='fnref:MLBox'><a href='#fn:MLBox' class='footnote'>6</a></sup>";
+                        }
+                         else if (String(names[0]) == 'Google AutoML') {
+                            cell1.innerHTML += "<sup id='fnref:Google'><a href='#fn:Google' class='footnote'>7</a></sup>";
+                        }
+
+                        else if (String(names[0]) == 'Azure Machine Learning') {
+                            cell1.innerHTML += "<sup id='fnref:Azure'><a href='#fn:Azure' class='footnote'>8</a></sup>";
+                        } else if (String(names[0]) == 'MLJar') {
+                            cell1.innerHTML += "<sup id='fnref:MLJar'><a href='#fn:MLJar' class='footnote'>9</a></sup>";
+                        } else if (String(names[0]) == 'ATM') {
+                            cell1.innerHTML += "<sup id='fnref:ATM'><a href='#fn:ATM' class='footnote'>10</a></sup>";
+                        } else if (String(names[0]) == 'Auto_ml') {
+                            cell1.innerHTML += "<sup id='fnref:Auto_ml'><a href='#fn:Auto_ml' class='footnote'>11</a></sup>";
+                        } else if (String(names[0]) == 'Amazon SageMaker ') {
+                            cell1.innerHTML += "<sup id='fnref:Amazon'><a href='#fn:Amazon' class='footnote'>12</a></sup>";
+                        } else if (String(names[0]) == 'AutoKeras') {
+                            cell1.innerHTML += "<sup id='fnref:AutoKeras'><a href='#fn:AutoKeras' class='footnote'>13</a></sup>";
+                        } else if (String(names[0]) == 'Feature Tools') {
+                            cell1.innerHTML += "<sup id='fnref:FeatureTools'><a href='#fn:FeatureTools' class='footnote'>14</a></sup>";
+                        } else if (String(names[0]) == 'tsfresh') {
+                            cell1.innerHTML += "<sup id='fnref:tsfresh'><a href='#fn:tsfresh' class='footnote'>15</a></sup>";
+                        } else if (String(names[0]) == 'Uber Ludwig ') {
+                            cell1.innerHTML += "<sup id='fnref:Ludwig'><a href='#fn:Ludwig' class='footnote'>16</a></sup>";
+                        } else if (String(names[0]) == 'TransmogrifAI') {
+                            cell1.innerHTML += "<sup id='fnref:TransmogrifAI'><a href='#fn:TransmogrifAI' class='footnote'>17</a></sup>";
+                        } else if (String(names[0]) == 'The Automatic Statistician') {
+                            cell1.innerHTML += "<sup id='fnref:TheAutomaticStatistician'><a href='#fn:TheAutomaticStatistician' class='footnote'>18</a></sup>";
+                        }
+                        cell2.textContent = values[0];
+                        cell3.textContent = values[1];
+
+                        table.appendChild(row);
+                        row.appendChild(cell1);
+                        row.appendChild(cell2);
+                        row.appendChild(cell3);
+                    }
                     console.log(httpRequest.responseText);
                 }
                 else
