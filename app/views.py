@@ -8,7 +8,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///AutoML.db'
 db = SQLAlchemy(app)
 
-
 class System(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
@@ -88,8 +87,6 @@ class System(db.Model):
     written_reports = db.Column(db.Boolean)
     feature_matrix = db.Column(db.Boolean)
 
-
-db.create_all()
 
 
 @app.route('/')
@@ -287,6 +284,6 @@ def process():
                       str(round((score[results[x]] / answercount) * 100, 2)) + '%|'
     return result
 
-
 if __name__ == '__main__':
         app.run(debug=True, host="0.0.0.0", port=80)
+
